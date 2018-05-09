@@ -1,0 +1,103 @@
+import React from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Platform
+} from 'react-native';
+
+import SearchBar from './SearchBar';
+import AudioList from './AudioList';
+import PropTypes from 'prop-types';
+import { WebBrowser } from 'expo';
+import { MonoText } from '../components/StyledText';
+
+export default class FullAudioPlayer extends React.Component {
+  static propTypes = {
+    objectList: PropTypes.array.isRequired,
+    findId: PropTypes.func.isRequired,
+  }
+
+  static navigationOptions = {
+    title: 'Audio Search',
+    header: null,
+  };
+
+  state = {
+    objectList: this.props.objectList,
+    filteredList: [],
+    searchTerm: '',
+  };
+
+  componentWillMount = () => {
+    let _filteredList = [],
+      searchFiltA = 'a';
+    for (let i = 0; i < this.state.objectList.length; i++) {
+      if (this.state.objectList[i].id.charAt(0).indexOf(searchFiltA) > -1) {
+        _filteredList.push(this.state.objectList[i]);
+      }
+    }
+    this.setState({
+      objectList: _filteredList
+    })
+  }
+
+  handleTextInput = (enteredText) => {
+    this.setState({
+      searchTerm: enteredText
+    }), () => { this.filterList(); }
+  }
+
+  render() {
+    let _filteredList = [];
+    let searchFilt = this.state.searchTerm;
+    for (let i = 0; i < this.state.objectList.length; i++) {
+      if (this.state.objectList[i].id.toLowerCase().indexOf(searchFilt.toLowerCase()) > -1 || this.state.objectList[i].name.toLowerCase().indexOf(searchFilt.toLowerCase()) > -1) {
+        _filteredList.push(this.state.objectList[i]);
+      }
+    }
+    return (
+      <View style={styles.main}>
+       <View style={styles.titleSpacing}>
+      <Text style={styles.title}>AUDIO GUIDE</Text>
+      {/* <Text style={styles.title}>GUIDE</Text> */}
+      </View>
+      <View style={styles.search}>
+        <SearchBar handleTextInput={this.handleTextInput} />
+      </View>
+        <AudioList objects={_filteredList} findId={this.props.findId}/>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  main: {
+    flex: 1,
+    paddingTop: 10,
+    backgroundColor: '#e2ddc5',
+    margin: 10,
+    marginBottom: 0,
+    marginTop: Platform.OS === 'ios' ? '5%' : 10,
+  
+  },
+  title: {
+    fontSize: 30,
+    letterSpacing: 2,
+    margin: 0,
+    padding: 0,
+  },
+  titleSpacing: {
+    margin: '5%',
+  },
+  search: {
+    backgroundColor: 'white',
+   marginLeft: '5%',
+   marginRight: '5%',
+   marginBottom: '3%',
+   borderBottomColor: '#47315a',
+   borderBottomWidth: 2,
+   
+  },
+});
+
