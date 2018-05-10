@@ -11,11 +11,12 @@ import {
   Icon,
 
 } from 'react-native';
-
 import { WebBrowser } from 'expo';
-
+import { translate } from 'react-i18next';
 import { MonoText } from '../components/StyledText';
 
+// Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
+@translate(['homeScreen', 'common'], { wait: true })
 export default class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null,
@@ -23,8 +24,18 @@ export default class HomeScreen extends React.Component {
   };
 
   render() {
+    const { t, i18n } = this.props;
+
     return (
       <View style={styles.container}>
+            <Button
+          onPress={() => { i18n.changeLanguage('en') }}
+          title={'To English'}
+        />
+        <Button
+          onPress={() => { i18n.changeLanguage('il') }}
+          title={'To Italian'}
+        />
             <Image
               style={{
                 alignSelf: 'center',
@@ -89,7 +100,7 @@ export default class HomeScreen extends React.Component {
           flex: 3,
           fontSize: 15,
        
-        }}>AUDIO GUIDES</Text>
+        }}>{t('home:title')}</Text>
       </TouchableOpacity>  
       <TouchableOpacity onPress={()=>this.props.navigation.navigate('PanelStack')}
       style={{
