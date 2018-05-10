@@ -100,7 +100,7 @@ export default class HomeScreen extends React.Component {
           flex: 3,
           fontSize: 15,
        
-        }}>{t('home:title')}</Text>
+        }}>{t('home:audioButton')}</Text>
       </TouchableOpacity>  
       <TouchableOpacity onPress={()=>this.props.navigation.navigate('PanelStack')}
       style={{
@@ -144,7 +144,7 @@ export default class HomeScreen extends React.Component {
           fontSize: 13,
           alignItems: 'center',
        
-        }}>DESCRIPTION PANELS</Text>
+        }}>{t('home:panelsButton')}</Text>
       </TouchableOpacity>
       <TouchableOpacity onPress={()=> this.props.navigation.navigate('InfoStack')}
       style={{
@@ -189,7 +189,7 @@ export default class HomeScreen extends React.Component {
           fontSize: 13,
         
        
-        }}>EXHIBIT INFORMATION</Text>
+        }}>{t('home:infoButton')}</Text>
       </TouchableOpacity> 
 
       

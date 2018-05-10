@@ -10,9 +10,11 @@ import {
 } from 'react-native';
 import Slider from 'react-native-slider';
 import FullAudioPlayer from './FullAudioPlayer';
-import { Asset, Audio, Font } from 'expo';
+import { Asset, Audio, Font, DangerZone } from 'expo';
 import { MaterialIcons } from '@expo/vector-icons';
-import {audioContent} from '../assets/englishContent';
+import { audioContentEn, audioContentIl } from '../assets/englishContent';
+import { translate } from 'react-i18next';
+const { Localization } = DangerZone;
 
 const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFFFFF';
@@ -22,6 +24,8 @@ const LOADING_STRING = 'Loading...';
 const BUFFERING_STRING = 'Buffering...';
 const RATE_SCALE = 3.0;
 
+
+@translate(['audioPlayer', 'common'], { wait: true })
 export default class AudioPlayer extends Component {
 	static navigationOptions = {
 		header: null,
@@ -42,7 +46,13 @@ export default class AudioPlayer extends Component {
 			isLoading: true,
 			volume: 1.0,
 			rate: 1.0,
+			content: audioContentEn,
+			locale: 'derp'
 		};
+	}
+
+	componentWillMount() {
+		this.getLocale()
 	}
 
 	componentDidMount() {
@@ -56,6 +66,28 @@ export default class AudioPlayer extends Component {
 		this._loadNewPlaybackInstance(false);
 	}
 
+	// setLocale = async () => {
+	// 	const locale = await Localization.getCurrentLocaleAsync();
+	// 	const localeStr = locale.substring(0, 2);
+	// 	this.setState({
+	// 		locale: localeStr
+	// 	})
+	// }
+	getLocale = () => {
+		const locale = this.props.i18n.language
+		const localeStr = locale.substring(0, 2);
+		let map = []
+		if (localeStr == 'il') {
+			map = audioContentIl
+		}
+		else {
+			map = audioContentEn
+		}
+		this.setState({
+			content: map
+		})
+	}
+
 	componentWillUnmount() {
 		this.playbackInstance.unloadAsync()
 	}
@@ -67,7 +99,7 @@ export default class AudioPlayer extends Component {
 			this.playbackInstance = null;
 		}
 
-		const source = audioContent[this.index].media;
+		const source = this.state.content[this.index].media;
 		const initialStatus = {
 			shouldPlay: playing,
 		};
@@ -92,7 +124,7 @@ export default class AudioPlayer extends Component {
 			});
 		} else {
 			this.setState({
-				playbackInstanceName: audioContent[this.index].name,
+				playbackInstanceName: this.state.content[this.index].name,
 				isLoading: false,
 			});
 		}
@@ -117,8 +149,8 @@ export default class AudioPlayer extends Component {
 
 	_advanceIndex(forward) {
 		this.index =
-			(this.index + (forward ? 1 : audioContent.length - 1)) %
-			audioContent.length;
+			(this.index + (forward ? 1 : this.state.content.length - 1)) %
+			this.state.content.length;
 	}
 
 	async _updatePlaybackInstanceForIndex(playing) {
@@ -217,20 +249,20 @@ export default class AudioPlayer extends Component {
 
 	findId = id => {
 		if (this.playbackInstance != null) {
-			const newIndex = audioContent.findIndex(
+			const newIndex = this.state.content.findIndex(
 				(object) => object.id == id
 			);
 			this.index = newIndex;
 			this._updatePlaybackInstanceForIndex(true);
 		}
-
 	}
 
 	render() {
+		const { t, i18n } = this.props;
 		return (
 			<View style={styles.container}>
 				<View style={styles.list}>
-					<FullAudioPlayer objectList={audioContent}  findId={this.findId} />
+					<FullAudioPlayer objectList={this.state.content} findId={this.findId} />
 				</View>
 				<View style={styles.bottom}>
 					<View
@@ -250,14 +282,14 @@ export default class AudioPlayer extends Component {
 							disabled={this.state.isLoading}
 						>
 							<View>
-							<Image
-								style={{
-									width: 20,
-									height: 20,
-								   }} 
-								 resizeMode="contain"
-								 source={require("../assets/images/previous.png")}
-									  />
+								<Image
+									style={{
+										width: 20,
+										height: 20,
+									}}
+									resizeMode="contain"
+									source={require("../assets/images/previous.png")}
+								/>
 							</View>
 						</TouchableHighlight>
 						<TouchableHighlight
@@ -267,32 +299,32 @@ export default class AudioPlayer extends Component {
 							disabled={this.state.isLoading}
 						>
 							<View
-							style={{
-								marginLeft: 15,
-								marginRight: 15,
-								
-									 }} >
-								{this.state.isPlaying ? (
-								<Image
 								style={{
-			  
-							  width: Platform.OS === 'ios' ? 40 : 35,
-							  height: Platform.OS === 'ios' ? 40 : 35,
+									marginLeft: 15,
+									marginRight: 15,
 
-								   }} 
-								 resizeMode="contain"
-								 source={require("../assets/images/pause.png")}
-									  />
+								}} >
+								{this.state.isPlaying ? (
+									<Image
+										style={{
+
+											width: Platform.OS === 'ios' ? 40 : 35,
+											height: Platform.OS === 'ios' ? 40 : 35,
+
+										}}
+										resizeMode="contain"
+										source={require("../assets/images/pause.png")}
+									/>
 								) : (
-	 					<Image
-                       style={{
-     
-						width: Platform.OS === 'ios' ? 40 : 35,
-						height: Platform.OS === 'ios' ? 40 : 35,
-                          }} 
-                        resizeMode="contain"
-                        source={require("../assets/images/play.png")}
-                             />
+										<Image
+											style={{
+
+												width: Platform.OS === 'ios' ? 40 : 35,
+												height: Platform.OS === 'ios' ? 40 : 35,
+											}}
+											resizeMode="contain"
+											source={require("../assets/images/play.png")}
+										/>
 									)}
 							</View>
 						</TouchableHighlight>
@@ -303,25 +335,25 @@ export default class AudioPlayer extends Component {
 							disabled={this.state.isLoading}
 						>
 							<View>
-							<Image
-								style={{
-			  
-							  width: 20,
-							  height: 20,
-								   }} 
-								 resizeMode="contain"
-								 source={require("../assets/images/next.png")}
-									  />
+								<Image
+									style={{
+
+										width: 20,
+										height: 20,
+									}}
+									resizeMode="contain"
+									source={require("../assets/images/next.png")}
+								/>
 							</View>
 						</TouchableHighlight>
 					</View>
 					<View style={styles.list2}>
-						<Text style={styles.text}>{this.state.playbackInstanceName.toUpperCase()}</Text>
+						<Text style={styles.text}>{this.state.playbackInstanceName.toUpperCase()} {this.state.locale}</Text>
 						<Text style={styles.time}>{this.state.isBuffering ? (
-								BUFFERING_STRING
-							) : (
-									this._getTimestamp()
-								)}</Text>
+							BUFFERING_STRING
+						) : (
+								this._getTimestamp()
+							)}</Text>
 					</View>
 					<View
 						style={[
@@ -356,7 +388,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		alignSelf: 'stretch',
 		backgroundColor: BACKGROUND_COLOR,
-		
+
 	},
 	playbackContainer: {
 		flex: 1,
@@ -370,7 +402,7 @@ const styles = StyleSheet.create({
 		marginLeft: 40,
 		marginRight: 40,
 		marginTop: -10,
-		
+
 	},
 	text: {
 		fontSize: FONT_SIZE,
@@ -382,7 +414,7 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 	},
 	buttonsContainerBase: {
-		
+
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'center',
@@ -402,6 +434,6 @@ const styles = StyleSheet.create({
 	},
 	bottom: {
 		flex: 1,
-		
+
 	}
 });
