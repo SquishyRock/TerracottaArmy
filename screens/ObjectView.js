@@ -4,7 +4,7 @@ import { NavigationActions } from 'react-navigation'
 
 import PictureView from './PictureView';
 import PropTypes from 'prop-types';
-import content from '../assets/content';
+// import content from '../assets/content';
 
 export default class ObjectView extends React.Component {
   static navigationOptions = {
@@ -15,7 +15,6 @@ export default class ObjectView extends React.Component {
     const { params } = this.props.navigation.state;
     return (
       <View style={styles.container}>
-
         <View style={styles.content}>
           <PictureView object={params.singleItem} navigation={this.props.navigation}/>
         </View>

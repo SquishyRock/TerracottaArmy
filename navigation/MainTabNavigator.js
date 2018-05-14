@@ -22,6 +22,8 @@ import InfoIcon from '../assets/icons/InfoIcon';
 import SearchPanelIcon from '../assets/icons/SearchPanelIcon';
 import HeadphonesIcon from '../assets/icons/HeadphonesIcon';
 
+import { translate } from 'react-i18next';
+
 const TabBarLabel = ({ tintColor, focused, label }) => (
   <Text
     style={{

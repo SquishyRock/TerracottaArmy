@@ -7,8 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
 
-
+@translate(['objectItem', 'panels'], { wait: true })
 export default class ObjectItem extends React.Component {
   static propTypes = {
     object : PropTypes.object.isRequired,
@@ -20,16 +21,17 @@ export default class ObjectItem extends React.Component {
     this.props.navigation.navigate('Item', {
       singleItem: this.props.object
     })
-  }
+  } 
   render() {
     const { navigate } = this.props.navigation;
+
     return (
       <TouchableOpacity 
       onPress={this.handlePress}>
         <View style={styles.info}>
         <View style={styles.objectTitles}>
           <Text style={styles.title}>{this.props.object.id.toUpperCase()}</Text>
-          <Text style={styles.class}>{(this.props.object.id.charAt(0) == 'o') ? 'Object Panel' : 'Gallery Panel'} </Text>
+          <Text style={styles.class}>{(this.props.object.id.charAt(0) == 'o') ? this.props.t('panels:objPanel') : this.props.t('galPanel')} </Text>
           </View>
           <View style={styles.footer}>
             <Text style={styles.cause}>{this.props.object.name.toUpperCase()}</Text>

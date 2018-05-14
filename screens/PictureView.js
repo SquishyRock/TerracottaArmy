@@ -1,8 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
-import { NavigationActions } from 'react-navigation'
+import { StackActions, NavigationActions } from 'react-navigation'
 import PropTypes from 'prop-types';
+import { translate } from 'react-i18next';
+import { contentEn, contentIl } from '../assets/englishContent';
 
+@translate(['pictureView', 'panels'], { wait: true })
 export default class PictureView extends React.Component {
   static propTypes = {
     object: PropTypes.object.isRequired,
@@ -10,10 +13,30 @@ export default class PictureView extends React.Component {
       navigate: PropTypes.func.isRequired,
       }).isRequired,
   }
-
+  state = {
+    content: contentEn
+  }
+  
+  componentWillMount() {
+    this.getLocale()
+  }
+  getLocale = () => {
+    const locale = this.props.i18n.language
+    const localeStr = locale.substring(0, 2);
+    let map = []
+    if (localeStr == 'il') {
+      map = contentIl
+    }
+    else {
+      map = contentEn
+    }
+    this.setState({
+      content: map
+    })
+  }
 
   findId(id) {
-    const newIndex = content.findIndex(
+    const newIndex = this.state.content.findIndex(
       (object) => object.id == id
     );
     return newIndex;
@@ -22,13 +45,13 @@ export default class PictureView extends React.Component {
   _advanceIndex(up, id) {
     let index = this.findId(id)
     index =
-      (index + (up ? 1 : content.length - 1)) %
-      content.length;
-    const resetAction = NavigationActions.reset({
+      (index + (up ? 1 : this.state.content.length - 1)) %
+      this.state.content.length;
+    const resetAction = StackActions.reset({
       index: 1,  // it means change state to C which can goBack to previousView A
       actions: [
         NavigationActions.navigate({ routeName: 'SearchP' }),
-        NavigationActions.navigate({ routeName: 'Item', params: { singleItem: content[index] } }),
+        NavigationActions.navigate({ routeName: 'Item', params: { singleItem: this.state.content[index] } }),
       ]
     })
     this.props.navigation.dispatch(resetAction);

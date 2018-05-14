@@ -8,22 +8,42 @@ import {
 
 import SearchBar from './SearchBar';
 import ObjectList from './ObjectList';
-import { content } from '../assets/englishContent';
+import { contentEn, contentIl } from '../assets/englishContent';
 
 import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
+import { translate } from 'react-i18next';
 
+@translate(['panelSearch', 'panels'], { wait: true })
 export default class PanelSearch extends React.Component {
   static navigationOptions = {
     header: null,
   };
 
   state = {
-    objectList: content,
+    objectList: [],
     filteredList: [],
     currentId: null,
     searchTerm: '',
   };
+
+  componentWillMount() {
+    this.getLocale()
+  }
+  getLocale = () => {
+    const locale = this.props.i18n.language
+    const localeStr = locale.substring(0, 2);
+    let map = []
+    if (localeStr == 'il') {
+      map = contentIl
+    }
+    else {
+      map = contentEn
+    }
+    this.setState({
+      objectList: map
+    })
+  }
 
   handleTextInput = (enteredText) => {
     this.setState({
@@ -63,16 +83,17 @@ export default class PanelSearch extends React.Component {
         _filteredList.push(this.state.objectList[i]);
       }
     }
+    const { t, i18n } = this.props;
     return (
       <View style={styles.main}>
-      <View style={styles.titleSpacing}>
-      <Text style={styles.title}>SEARCH PANELS</Text>
-      {/* <Text style={styles.title}>PANELS</Text> */}
-      </View>
-      <View style={styles.search}>
-        <SearchBar handleTextInput={this.handleTextInput} />
+        <View style={styles.titleSpacing}>
+          <Text style={styles.title}>{t('panels:title')}</Text>
+          {/* <Text style={styles.title}>PANELS</Text> */}
         </View>
-        <ObjectList objects={_filteredList} navigation={this.props.navigation} style={styles.body}/>
+        <View style={styles.search}>
+          <SearchBar handleTextInput={this.handleTextInput} />
+        </View>
+        <ObjectList objects={_filteredList} navigation={this.props.navigation} style={styles.body} />
       </View>
     );
   }
@@ -80,7 +101,7 @@ export default class PanelSearch extends React.Component {
 
 const styles = StyleSheet.create({
   main: {
-    flex: 1, 
+    flex: 1,
     paddingTop: 10,
     backgroundColor: '#e2ddc5',
     margin: 10,
@@ -104,13 +125,13 @@ const styles = StyleSheet.create({
   },
   search: {
     backgroundColor: 'white',
-   marginLeft: '5%',
-   marginRight: '5%',
-   marginBottom: '3%',
-   borderBottomColor: '#47315a',
-   borderBottomWidth: 2,
-   
+    marginLeft: '5%',
+    marginRight: '5%',
+    marginBottom: '3%',
+    borderBottomColor: '#47315a',
+    borderBottomWidth: 2,
+
   },
- 
- 
+
+
 });

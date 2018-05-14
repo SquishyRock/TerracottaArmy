@@ -20,12 +20,10 @@ const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFFFFF';
 const DISABLED_OPACITY = 0.5;
 const FONT_SIZE = 14;
-const LOADING_STRING = 'Loading...';
-const BUFFERING_STRING = 'Buffering...';
 const RATE_SCALE = 3.0;
 
 
-@translate(['audioPlayer', 'common'], { wait: true })
+@translate(['audioPlayer', 'audio'], { wait: true })
 export default class AudioPlayer extends Component {
 	static navigationOptions = {
 		header: null,
@@ -37,7 +35,7 @@ export default class AudioPlayer extends Component {
 		this.shouldPlayAtEndOfSeek = false;
 		this.playbackInstance = null;
 		this.state = {
-			playbackInstanceName: LOADING_STRING,
+			playbackInstanceName: this.props.t('audio:loading'),
 			playbackInstancePosition: null,
 			playbackInstanceDuration: null,
 			shouldPlay: false,
@@ -47,7 +45,6 @@ export default class AudioPlayer extends Component {
 			volume: 1.0,
 			rate: 1.0,
 			content: audioContentEn,
-			locale: 'derp'
 		};
 	}
 
@@ -117,7 +114,7 @@ export default class AudioPlayer extends Component {
 		if (isLoading) {
 			this.setState({
 				isPlaying: false,
-				playbackInstanceName: LOADING_STRING,
+				playbackInstanceName: this.props.t('audio:loading'),
 				playbackInstanceDuration: null,
 				playbackInstancePosition: null,
 				isLoading: true,
@@ -350,7 +347,7 @@ export default class AudioPlayer extends Component {
 					<View style={styles.list2}>
 						<Text style={styles.text}>{this.state.playbackInstanceName.toUpperCase()} {this.state.locale}</Text>
 						<Text style={styles.time}>{this.state.isBuffering ? (
-							BUFFERING_STRING
+							this.props.t('audio:buffering')
 						) : (
 								this._getTimestamp()
 							)}</Text>

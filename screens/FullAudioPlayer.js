@@ -10,8 +10,11 @@ import SearchBar from './SearchBar';
 import AudioList from './AudioList';
 import PropTypes from 'prop-types';
 import { WebBrowser } from 'expo';
+import { translate } from 'react-i18next';
+
 import { MonoText } from '../components/StyledText';
 
+@translate(['fullAudioPlayer', 'audio'], { wait: true })
 export default class FullAudioPlayer extends React.Component {
   static propTypes = {
     objectList: PropTypes.array.isRequired,
@@ -56,10 +59,11 @@ export default class FullAudioPlayer extends React.Component {
         _filteredList.push(this.state.objectList[i]);
       }
     }
+    const { t, i18n } = this.props;
     return (
       <View style={styles.main}>
        <View style={styles.titleSpacing}>
-      <Text style={styles.title}>AUDIO GUIDE</Text>
+      <Text style={styles.title}>{t('audio:title')}</Text>
       {/* <Text style={styles.title}>GUIDE</Text> */}
       </View>
       <View style={styles.search}>

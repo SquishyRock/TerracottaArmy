@@ -2,6 +2,7 @@ import React from 'react';
 import { Platform, StyleSheet, Text, View, Button, Linking, Dimensions, Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { MapView } from 'expo';
 import DirectionsCallout from './DirectionsCallout'
+import { translate } from 'react-i18next';
 
 const { width, height } = Dimensions.get('window');
 
@@ -18,6 +19,8 @@ const mapTitle = <TouchableOpacity onPress={this.openMaps}>
   </Text>
 </TouchableOpacity >;
 
+
+@translate(['extraInfo', 'info'], { wait: true })
 export default class ExtraInfo extends React.Component {
   static navigationOptions = {
     header: null,
@@ -38,12 +41,13 @@ export default class ExtraInfo extends React.Component {
   }
 
   render() {
+    const { t, i18n } = this.props;
     return (
       <ScrollView style={styles.info}>
         <View style={styles.titleSpacing}>
 
-          <Text style={styles.title}>EXHIBIT</Text>
-          <Text style={styles.title}>INFO</Text>
+          <Text style={styles.title}>{t('info:title1')}</Text>
+          <Text style={styles.title}>{t('info:title2')}</Text>
           {/* <Text style={styles.title}>INFO</Text> */}
 
 
@@ -77,7 +81,7 @@ export default class ExtraInfo extends React.Component {
               top:  '-10%',
             }}>
           
-              <Text style={styles.website}>VISIT THE WEBSITE</Text>
+              <Text style={styles.website}>{t('info:website')}</Text>
              
           </TouchableOpacity>
           <Image
@@ -90,31 +94,20 @@ export default class ExtraInfo extends React.Component {
               top:  '-15%',
             }}
             resizeMode="contain"
-            source={require("../assets/images/terracotta-title.png")}
+            source={t('info:file')} 
           />
 
           <View style={styles.aboutText}>
 
-            <Text style={styles.paragraphSpace}>The Terracotta Army and The First Emperor of China;
-              The Exhibition is an extraordinary voyage in Ancient China of
-              2,200 years ago. It is the most complete exhibition ever created
-              on the Terracotta Army, the necropolis and life of the First Emperor.
-              In an incredible staging, this exhibition brings together more than
-              300 life size reproductions of statues, chariots, weapons and objects
-              from the daily life of the Emperor Qin Shi Huangdi, such as they were
-              discovered in the pits.</Text>
-            <Text>This immersion in the heart of the necropolis is intended for a
-              broad audience. Over more than 1,800 m², the exhibition addresses
-              numerous topics such as the history of the First Emperor, his army
-              and military conquests, his empire and the creation process of the
-              Terracotta Army soldiers.</Text>
+            <Text style={styles.paragraphSpace}>{t('info:info1')}</Text>
+            <Text>{t('info:info2')}</Text>
           </View>
         </View>
         <View style={{
           flex: 1, alignItems: 'center',
           justifyContent: 'center', marginTop: 120
         }} >
-          <Text style={styles.location}>WE ARE LOCATED:</Text>
+          <Text style={styles.location}>{t('info:location')}</Text>
           <Image
             style={{ width: '90%', height: Platform.OS === 'ios' ? 250 : 275,  flex: 1, top: '-15%' }}
             resizeMode="contain"
@@ -122,7 +115,7 @@ export default class ExtraInfo extends React.Component {
           />
           <TouchableOpacity onPress={this.openMaps} style={styles.directions}>
             <Text style={styles.directionsText}>
-              Directions
+            {t('info:direction')}
             </Text>
           </TouchableOpacity >
         </View>
@@ -134,7 +127,7 @@ export default class ExtraInfo extends React.Component {
           }}>
           <TouchableOpacity
             onPress={this.openFacebook} style={styles.facebookButton}>
-            <Text style={styles.facebookButtonText}>Visit us on Facebook</Text>
+            <Text style={styles.facebookButtonText}>{t('info:facebook')}</Text>
           </TouchableOpacity>
      
         </View>
