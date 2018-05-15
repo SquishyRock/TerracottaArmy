@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {
 	Dimensions,
 	Image,
@@ -11,12 +11,9 @@ import {
 import Slider from 'react-native-slider';
 import FullAudioPlayer from './FullAudioPlayer';
 import { Asset, Audio, Font, DangerZone } from 'expo';
-import { MaterialIcons } from '@expo/vector-icons';
 import { audioContentEn, audioContentIl } from '../assets/englishContent';
 import { translate } from 'react-i18next';
-const { Localization } = DangerZone;
 
-const { width: DEVICE_WIDTH, height: DEVICE_HEIGHT } = Dimensions.get('window');
 const BACKGROUND_COLOR = '#FFFFFF';
 const DISABLED_OPACITY = 0.5;
 const FONT_SIZE = 14;
@@ -24,7 +21,7 @@ const RATE_SCALE = 3.0;
 
 
 @translate(['audioPlayer', 'audio'], { wait: true })
-export default class AudioPlayer extends Component {
+export default class AudioPlayer extends React.Component {
 	static navigationOptions = {
 		header: null,
 	};
@@ -44,32 +41,19 @@ export default class AudioPlayer extends Component {
 			isLoading: true,
 			volume: 1.0,
 			rate: 1.0,
-			content: audioContentEn,
+			content: [],
 		};
+		this.getLocale = this.getLocale.bind(this);
 	}
 
 	componentWillMount() {
 		this.getLocale()
 	}
 
-	componentDidMount() {
-		Audio.setAudioModeAsync({
-			allowsRecordingIOS: false,
-			interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
-			playsInSilentModeIOS: true,
-			shouldDuckAndroid: true,
-			interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
-		});
-		this._loadNewPlaybackInstance(false);
+	componentWillReceiveProps() {
+    this.getLocale()
 	}
-
-	// setLocale = async () => {
-	// 	const locale = await Localization.getCurrentLocaleAsync();
-	// 	const localeStr = locale.substring(0, 2);
-	// 	this.setState({
-	// 		locale: localeStr
-	// 	})
-	// }
+	
 	getLocale = () => {
 		const locale = this.props.i18n.language
 		const localeStr = locale.substring(0, 2);
@@ -84,6 +68,19 @@ export default class AudioPlayer extends Component {
 			content: map
 		})
 	}
+
+
+	componentDidMount() {
+		Audio.setAudioModeAsync({
+			allowsRecordingIOS: false,
+			interruptionModeIOS: Audio.INTERRUPTION_MODE_IOS_DO_NOT_MIX,
+			playsInSilentModeIOS: true,
+			shouldDuckAndroid: true,
+			interruptionModeAndroid: Audio.INTERRUPTION_MODE_ANDROID_DO_NOT_MIX,
+		});
+		this._loadNewPlaybackInstance(false);
+	}
+
 
 	componentWillUnmount() {
 		this.playbackInstance.unloadAsync()

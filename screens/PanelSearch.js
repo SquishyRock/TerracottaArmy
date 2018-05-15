@@ -30,6 +30,11 @@ export default class PanelSearch extends React.Component {
   componentWillMount() {
     this.getLocale()
   }
+
+  componentWillReceiveProps() {
+    this.getLocale()
+  }
+
   getLocale = () => {
     const locale = this.props.i18n.language
     const localeStr = locale.substring(0, 2);
