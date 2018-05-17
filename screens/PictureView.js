@@ -11,12 +11,16 @@ export default class PictureView extends React.Component {
     object: PropTypes.object.isRequired,
     navigation: PropTypes.shape({
       navigate: PropTypes.func.isRequired,
-      }).isRequired,
+    }).isRequired,
   }
-  state = {
-    content: contentEn
+  constructor(props) {
+    super(props)
+    this.state = {
+      content: contentEn
+    }
   }
-  
+
+
   componentWillMount() {
     this.getLocale()
   }
@@ -60,75 +64,75 @@ export default class PictureView extends React.Component {
   render() {
     const { params } = this.props.navigation.state;
     return (
-     
-       
+
+
       <View style={{ flex: 1, }}>
-      <View style={{ backgroundColor: '#e2ddc5', }}>
+        <View style={{ backgroundColor: '#e2ddc5', }}>
 
-      <View 
-      style={{
-        flex: 1,
-        marginBottom: '15%',
-        marginTop: 20,
-        flexDirection: 'row',
-        alignItems: 'center',
-        justifyContent: 'flex-start'
-       }}>
-      <TouchableOpacity 
-       style={{
-        zIndex: 400,
-          width: '70%',
-          height: 30,
-          marginLeft: 10,
-      
-          flex: 1,
-        }}
-      onPress={() => this.props.navigation.goBack()}>
-      <Image
-      style={{
+          <View
+            style={{
+              flex: 1,
+              marginBottom: '15%',
+              marginTop: 20,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'flex-start'
+            }}>
+            <TouchableOpacity
+              style={{
+                zIndex: 400,
+                width: '70%',
+                height: 30,
+                marginLeft: 10,
 
-          width: '50%',
-          height: '100%',
-        
-        }}
-            resizeMode="contain"
-            source={require("../assets/images/arrow-left.png")}
-          />
-        </TouchableOpacity>
-        <Text style={styles.objectNumber}>{this.props.object.id.toUpperCase()}</Text>
-        </View>
-        <View style={styles.objectNameContainer}>
-        <Text style={styles.objectName}>{this.props.object.name}</Text>
-        </View>
+                flex: 1,
+              }}
+              onPress={() => this.props.navigation.goBack()}>
+              <Image
+                style={{
+
+                  width: '50%',
+                  height: '100%',
+
+                }}
+                resizeMode="contain"
+                source={require("../assets/images/arrow-left.png")}
+              />
+            </TouchableOpacity>
+            <Text style={styles.objectNumber}>{this.props.object.id.toUpperCase()}</Text>
           </View>
-          <View  style={{
-    // flex: 1,
- 
-   flexDirection:'row',
-   justifyContent: 'center',
-   alignItems: 'center',
- 
-   marginBottom:0,
-   top: '-7%',
-  }}>
-<TouchableOpacity style={styles.navLeft} onPress={() => this._advanceIndex(false, params.singleItem.id)}>
-    <Text style={styles.leftText}> Previous </Text>
-  </TouchableOpacity>
-  <TouchableOpacity  style={styles.navRight} onPress={() => this._advanceIndex(true, params.singleItem.id)}>
-    <Text style={styles.rightText}> Next </Text>
-  </TouchableOpacity>
-  </View>
-          <ScrollView style={styles.container} >
-          <Text style={styles.containerText}>
-          {this.props.object.text}
-        </Text>
-        {this.props.object.id.charAt(0) === 'o' ? <Image style={styles.image} source={this.props.object.media} /> : <Text> </Text>}
-        <View style={styles.links}>
+          <View style={styles.objectNameContainer}>
+            <Text style={styles.objectName}>{this.props.object.name}</Text>
+          </View>
         </View>
+        <View style={{
+          // flex: 1,
 
-      </ScrollView>
+          flexDirection: 'row',
+          justifyContent: 'center',
+          alignItems: 'center',
+
+          marginBottom: 0,
+          top: '-7%',
+        }}>
+          <TouchableOpacity style={styles.navLeft} onPress={() => this._advanceIndex(false, params.singleItem.id)}>
+            <Text style={styles.leftText}> Previous </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.navRight} onPress={() => this._advanceIndex(true, params.singleItem.id)}>
+            <Text style={styles.rightText}> Next </Text>
+          </TouchableOpacity>
+        </View>
+        <ScrollView style={styles.container} >
+          <Text style={styles.containerText}>
+            {this.props.object.text}
+          </Text>
+          {this.props.object.id.charAt(0) === 'o' ? <Image style={styles.image} source={this.props.object.media} /> : <Text> </Text>}
+          <View style={styles.links}>
+          </View>
+
+        </ScrollView>
       </View>
-     
+
     );
   }
 }
@@ -138,10 +142,10 @@ const styles = StyleSheet.create({
     flex: 1
   },
   image: {
-    
+
     flex: 1,
     width: null,
-   
+
     height: 220,
     resizeMode: 'contain'
   },
@@ -155,7 +159,7 @@ const styles = StyleSheet.create({
   //   flex: 1,
   //   flexDirection: 'row'
   // },
-   
+
   // facebookButton: {
   //   marginTop: 0,
   //   backgroundColor:'white',
@@ -163,33 +167,33 @@ const styles = StyleSheet.create({
   //   width: 200,
   //   flex: 1,
   //   marginBottom: 20,
- 
+
   //  },
   objectName: {
     fontSize: 33,
-   
-    
+
+
   },
   objectNameContainer: {
     width: '80%',
     marginLeft: '5%',
     marginTop: '4%',
     marginBottom: '12%',
-   
+
   },
   container: {
     marginTop: 0,
     paddingLeft: 20,
     paddingRight: 20,
-   marginBottom: 0
-  
+    marginBottom: 0
 
-   
+
+
 
   },
   navRight: {
     backgroundColor: '#3e3f3f',
-    width: 100, 
+    width: 100,
     height: 50,
     borderBottomRightRadius: 30,
     borderTopRightRadius: 30,
@@ -212,22 +216,22 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginRight: 15,
     marginTop: 15,
-  
-  }, 
+
+  },
   containerText: {
     fontSize: 19,
     marginBottom: '5%',
   },
   objectNumber: {
-   
-flex: 2,
+
+    flex: 2,
     textAlign: 'right',
-   
+
     fontSize: 17,
     letterSpacing: 1,
     marginRight: 10,
- 
+
   }
 
- 
+
 });

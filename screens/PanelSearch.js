@@ -23,7 +23,6 @@ export default class PanelSearch extends React.Component {
   state = {
     objectList: [],
     filteredList: [],
-    currentId: null,
     searchTerm: '',
   };
 

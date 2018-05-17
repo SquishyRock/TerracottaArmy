@@ -22,8 +22,13 @@ export default class HomeScreen extends React.Component {
     header: null,
     tabBarVisible: false,
   };
-  state = {
-    lang: ''
+  constructor(props) {
+    super(props)
+    this.state = {
+      lang: ''
+    }
+    this.getLocale = this.getLocale.bind(this)
+    this._changeLang = this._changeLang.bind(this)
   }
 
 
@@ -45,17 +50,23 @@ export default class HomeScreen extends React.Component {
 
   render() {
     const { t, i18n } = this.props;
-
     return (
       <View style={styles.container}>
-        <Picker
-          selectedValue={this.state.lang}
-          // style={{ height: 50, width: 200 }}
-          onValueChange={(itemValue, itemIndex) => this._changeLang(itemValue)}>
-          <Picker.Item label="English" value="en" />
-          <Picker.Item label="Italian" value="il" />
-        </Picker>
         <Text>{this.state.lang}</Text>
+        <TouchableOpacity
+          style={this.state.lang === 'en' ? styles.activeFlag : styles.inactiveFlag}
+          onPress={() => { this._changeLang('en') }}
+        >
+          <Text> English
+          </Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={this.state.lang === 'il' ? styles.activeFlag : styles.inactiveFlag}
+          onPress={() => { this._changeLang('il') }}
+        >
+          <Text> Italian
+          </Text>
+        </TouchableOpacity>
         <Image
           style={{
             alignSelf: 'center',
@@ -228,5 +239,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#e2ddc5',
     margin: 10,
     marginTop: Platform.OS === 'ios' ? '5%' : 10,
+  },
+  activeFlag: {
+    height: 30,
+  },
+  inactiveFlag: {
+    height: 30,
+    backgroundColor: 'white'
   },
 });
