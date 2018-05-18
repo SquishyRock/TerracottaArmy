@@ -23,7 +23,7 @@ export default class AudioItem extends React.Component {
     return (
       <TouchableOpacity 
       onPress={this.handlePress}>
-        <View style={styles.info}>
+        <View style={(this.props.listIndex == this.props.songIndex) ? styles.info : styles.info1}>
         <View style={styles.objectTitles}>
         <Image
               style={{
@@ -42,7 +42,7 @@ export default class AudioItem extends React.Component {
              marginLeft:"-3%",
             
             }}>
-          <Text style={styles.id}>{this.props.object.id.toUpperCase()}</Text>
+          <Text style={styles.id}>{this.props.object.id.toUpperCase()} {this.props.listIndex} {this.props.songIndex}</Text>
           <Text style={styles.name}>{this.props.object.name.toUpperCase()}</Text>
           </View>
           </View>
@@ -56,22 +56,28 @@ const styles = StyleSheet.create({
   deal: {
   },
   info: {
+    backgroundColor: 'red',
+    borderColor: 'black',
+    borderWidth: .5,
+    flex: 1,
+    marginLeft: '8%',
+    marginRight: '8%',
+    marginTop: '2%', 
+    paddingBottom: 4,
+  },
+  info1: {
     backgroundColor: '#e2ddc5',
     borderColor: 'black',
     borderWidth: .5,
     flex: 1,
     marginLeft: '8%',
     marginRight: '8%',
-    marginTop: '2%',
-  
- 
+    marginTop: '2%', 
     paddingBottom: 4,
   },
   id: {
     fontSize: 30,
-   
     marginBottom: 4,
-
     flex: 5, 
   },
   footer: {
@@ -88,7 +94,5 @@ const styles = StyleSheet.create({
   objectTitles: {
     overflow: 'hidden',
     flexDirection: 'row',
-    
-
   },
 });

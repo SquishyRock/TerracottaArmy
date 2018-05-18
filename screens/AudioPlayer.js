@@ -256,7 +256,7 @@ export default class AudioPlayer extends React.Component {
 		return (
 			<View style={styles.container}>
 				<View style={styles.list}>
-					<FullAudioPlayer objectList={this.state.content} findId={this.findId} />
+					<FullAudioPlayer objectList={this.state.content} findId={this.findId} songIndex={this.index} />
 				</View>
 				<View style={styles.bottom}>
 					<View

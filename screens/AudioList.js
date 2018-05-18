@@ -21,7 +21,7 @@ export default class AudioList extends React.Component {
         <FlatList
           data={this.props.objects} 
           keyExtractor={this._keyExtractor}
-          renderItem={({item}) => <AudioItem object={item} findId={this.props.findId}/>} />
+          renderItem={({item, index}) => <AudioItem object={item} findId={this.props.findId} listIndex={index} songIndex={this.props.songIndex}/>} />
       </View>
     );
   }

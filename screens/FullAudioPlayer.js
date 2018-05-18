@@ -69,7 +69,7 @@ export default class FullAudioPlayer extends React.Component {
       <View style={styles.search}>
         <SearchBar handleTextInput={this.handleTextInput} />
       </View>
-        <AudioList objects={_filteredList} findId={this.props.findId}/>
+        <AudioList objects={_filteredList} findId={this.props.findId} songIndex={this.props.songIndex}/>
       </View>
     );
   }
