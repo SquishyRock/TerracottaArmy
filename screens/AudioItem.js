@@ -42,7 +42,7 @@ export default class AudioItem extends React.Component {
              marginLeft:"-3%",
             
             }}>
-          <Text style={styles.id}>{this.props.object.id.toUpperCase()} {this.props.listIndex} {this.props.songIndex}</Text>
+          <Text style={styles.id}>{this.props.object.id.toUpperCase()} </Text>
           <Text style={styles.name}>{this.props.object.name.toUpperCase()}</Text>
           </View>
           </View>

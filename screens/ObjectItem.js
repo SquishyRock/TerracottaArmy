@@ -31,7 +31,7 @@ export default class ObjectItem extends React.Component {
         <View style={styles.info}>
         <View style={styles.objectTitles}>
           <Text style={styles.title}>{this.props.object.id.toUpperCase()}</Text>
-          <Text style={styles.class}>{(this.props.object.id.charAt(0) == 'o') ? this.props.t('panels:objPanel') : this.props.t('galPanel')} </Text>
+          <Text style={styles.class}>{(this.props.object.id.charAt(0) == 'o') ? this.props.t('panels:objPanel') : this.props.t('panels:galPanel')} </Text>
           </View>
           <View style={styles.footer}>
             <Text style={styles.cause}>{this.props.object.name.toUpperCase()}</Text>
