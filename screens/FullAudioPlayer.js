@@ -25,24 +25,28 @@ export default class FullAudioPlayer extends React.Component {
     title: 'Audio Search',
     header: null,
   };
-
-  state = {
-    objectList: this.props.objectList,
-    filteredList: [],
-    searchTerm: '',
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      objectList: [],
+      filteredList: [],
+      searchTerm: '',
+    };
+  }
 
   componentWillMount = () => {
-    let _filteredList = [],
-      searchFiltA = 'a';
-    for (let i = 0; i < this.state.objectList.length; i++) {
-      if (this.state.objectList[i].id.charAt(0).indexOf(searchFiltA) > -1) {
-        _filteredList.push(this.state.objectList[i]);
-      }
-    }
     this.setState({
-      objectList: _filteredList
+      objectList: this.props.objectList
     })
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.objectList !== this.props.objectList) {
+      console.log('New Props')
+      this.setState({
+        objectList: this.props.objectList
+      })
+    }
   }
 
   handleTextInput = (enteredText) => {
@@ -62,14 +66,14 @@ export default class FullAudioPlayer extends React.Component {
     const { t, i18n } = this.props;
     return (
       <View style={styles.main}>
-       <View style={styles.titleSpacing}>
-      <Text style={styles.title}>{t('audio:title')}</Text>
-      {/* <Text style={styles.title}>GUIDE</Text> */}
-      </View>
-      <View style={styles.search}>
-        <SearchBar handleTextInput={this.handleTextInput} />
-      </View>
-        <AudioList objects={_filteredList} findId={this.props.findId} songIndex={this.props.songIndex}/>
+        <View style={styles.titleSpacing}>
+          <Text style={styles.title}>{t('audio:title')}</Text>
+          {/* <Text style={styles.title}>GUIDE</Text> */}
+        </View>
+        <View style={styles.search}>
+          <SearchBar handleTextInput={this.handleTextInput} />
+        </View>
+        <AudioList objects={_filteredList} findId={this.props.findId} songIndex={this.props.songIndex} />
       </View>
     );
   }
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
     margin: 10,
     marginBottom: 0,
     marginTop: Platform.OS === 'ios' ? '5%' : 10,
-  
+
   },
   title: {
     fontSize: 30,
@@ -96,12 +100,12 @@ const styles = StyleSheet.create({
   },
   search: {
     backgroundColor: 'white',
-   marginLeft: '5%',
-   marginRight: '5%',
-   marginBottom: '3%',
-   borderBottomColor: '#47315a',
-   borderBottomWidth: 2,
-   
+    marginLeft: '5%',
+    marginRight: '5%',
+    marginBottom: '3%',
+    borderBottomColor: '#47315a',
+    borderBottomWidth: 2,
+
   },
 });
 

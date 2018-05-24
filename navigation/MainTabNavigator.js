@@ -11,6 +11,7 @@ import Colors from '../constants/Colors';
 
 //Screens
 import AudioPlayer from '../screens/AudioPlayer';
+import AudioPlayerRebuild from '../screens/AudioPlayerRebuild';
 import ExtraInfo from '../screens/ExtraInfo';
 import HomeScreen from '../screens/HomeScreen';
 import ObjectView from '../screens/ObjectView';
@@ -48,7 +49,7 @@ HomeStack.navigationOptions = {
 };
 
 const AudioStack = createStackNavigator({
-  SearchA: AudioPlayer,
+  SearchA: AudioPlayerRebuild,
 });
 
 AudioStack.navigationOptions = {

@@ -12,6 +12,8 @@ import {
 } from 'react-native';
 import Slider from 'react-native-slider';
 import FullAudioPlayer from './FullAudioPlayer';
+import SearchBar from './SearchBar';
+import AudioList from './AudioList';
 import { Asset, Audio, Font, DangerZone } from 'expo';
 import { audioContentEn, audioContentIl } from '../assets/englishContent';
 import { translate } from 'react-i18next';
@@ -22,8 +24,8 @@ const FONT_SIZE = 14;
 const RATE_SCALE = 3.0;
 
 
-@translate(['audioPlayer', 'audio'], { wait: true })
-export default class AudioPlayer extends React.Component {
+@translate(['audioPlayerRebuild', 'audio'], { wait: true })
+export default class AudioPlayerRebuild extends React.Component {
 	static navigationOptions = {
 		header: null,
 	};
@@ -44,6 +46,7 @@ export default class AudioPlayer extends React.Component {
 			volume: 1.0,
 			rate: 1.0,
 			content: [],
+			searchTerm: '',
 		};
 		this.getLocale = this.getLocale.bind(this);
 	}
@@ -59,30 +62,26 @@ export default class AudioPlayer extends React.Component {
 				content: audioContentEn
 			})
 		}
-
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if (this.props.i18n.language !== nextProps.i18n.language) {
-			this.getLocale()
-		}
-
+		this.getLocale()
 		// console.log('Receive Props')
 		// console.log(this.props.i18n.language)
 		// console.log(this.state.content)
 	}
 
 	getLocale = () => {
-		let map = []
 		if (this.props.i18n.language == 'il') {
-			map = audioContentIl
+			this.setState({
+				content: audioContentIl
+			})
 		}
 		else {
-			map = audioContentEn
+			this.setState({
+				content: audioContentEn
+			})
 		}
-		this.setState({
-			content: map
-		})
 	}
 
 
@@ -273,12 +272,34 @@ export default class AudioPlayer extends React.Component {
 		this.getLocale()
 	}
 
+	handleTextInput = (enteredText) => {
+		this.setState({
+			searchTerm: enteredText
+		}), () => { this.filterList(); }
+	}
+
 	render() {
+		let _filteredList = [];
+		let searchFilt = this.state.searchTerm;
+		for (let i = 0; i < this.state.content.length; i++) {
+			if (this.state.content[i].id.toLowerCase().indexOf(searchFilt.toLowerCase()) > -1 || this.state.content[i].name.toLowerCase().indexOf(searchFilt.toLowerCase()) > -1) {
+				_filteredList.push(this.state.content[i]);
+			}
+		}
 		const { t, i18n } = this.props;
 		return (
 			<View style={styles.container}>
 				<View style={styles.list}>
-					<FullAudioPlayer objectList={this.state.content} findId={this.findId} songIndex={this.index} getLocale={this.getLocale} />
+					<View style={styles.main}>
+						<View style={styles.titleSpacing}>
+							<Text style={styles.title}>{t('audio:title')}</Text>
+						</View>
+						<View style={styles.search}>
+							<SearchBar handleTextInput={this.handleTextInput} />
+						</View>
+						<AudioList objects={_filteredList} findId={this.props.findId} songIndex={this.index} />
+					</View>
+					{/* <FullAudioPlayer objectList={this.state.content} findId={this.findId} songIndex={this.index} getLocale={this.getLocale} /> */}
 				</View>
 				<View style={styles.bottom}>
 					<View
@@ -392,21 +413,6 @@ export default class AudioPlayer extends React.Component {
 						/>
 					</View>
 				</View>
-				<Text>{this.state.lang}</Text>
-				<TouchableOpacity
-					style={this.state.lang === 'en' ? styles.activeFlag : styles.inactiveFlag}
-					onPress={() => { this._changeLang('en') }}
-				>
-					<Text> English
-          </Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					style={this.state.lang === 'il' ? styles.activeFlag : styles.inactiveFlag}
-					onPress={() => { this._changeLang('il') }}
-				>
-					<Text> Italian
-          </Text>
-				</TouchableOpacity>
 			</View>
 		);
 	}
@@ -473,5 +479,32 @@ const styles = StyleSheet.create({
 	inactiveFlag: {
 		height: 30,
 		backgroundColor: 'white'
+	},
+	main: {
+		flex: 1,
+		paddingTop: 10,
+		backgroundColor: '#e2ddc5',
+		margin: 10,
+		marginBottom: 0,
+		marginTop: Platform.OS === 'ios' ? '5%' : 10,
+
+	},
+	title: {
+		fontSize: 30,
+		letterSpacing: 2,
+		margin: 0,
+		padding: 0,
+	},
+	titleSpacing: {
+		margin: '5%',
+	},
+	search: {
+		backgroundColor: 'white',
+		marginLeft: '5%',
+		marginRight: '5%',
+		marginBottom: '3%',
+		borderBottomColor: '#47315a',
+		borderBottomWidth: 2,
+
 	},
 });

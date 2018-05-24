@@ -35,6 +35,11 @@ export default class HomeScreen extends React.Component {
   componentWillMount() {
     this.getLocale()
   }
+
+  componentWillReceiveProps() {
+    this.getLocale()
+  }
+  
   getLocale = () => {
     const locale = this.props.i18n.language
     const localeStr = locale.substring(0, 2);
@@ -90,9 +95,6 @@ export default class HomeScreen extends React.Component {
           resizeMode="contain"
           source={require("../assets/images/homeScreen-artwork.png")}
         />
-
-
-
         <TouchableOpacity onPress={() => this.props.navigation.navigate('AudioStack')}
           style={{
             alignSelf: 'center',

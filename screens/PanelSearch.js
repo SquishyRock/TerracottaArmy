@@ -3,7 +3,8 @@ import {
   StyleSheet,
   Text,
   View,
-  Platform
+  Platform,
+  TouchableOpacity
 } from 'react-native';
 
 import SearchBar from './SearchBar';
@@ -35,10 +36,8 @@ export default class PanelSearch extends React.Component {
   }
 
   getLocale = () => {
-    const locale = this.props.i18n.language
-    const localeStr = locale.substring(0, 2);
     let map = []
-    if (localeStr == 'il') {
+    if (this.props.i18n.language == 'il') {
       map = contentIl
     }
     else {
@@ -78,6 +77,12 @@ export default class PanelSearch extends React.Component {
       singleItem: content[index]
     })
   }
+
+  _changeLang(item) {
+    this.props.i18n.changeLanguage(item)
+    this.getLocale()
+  }
+
 
   render() {
     let _filteredList = [];
