@@ -1,16 +1,11 @@
 import React from 'react';
 import { Platform, Text } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
-
 import TabBarIcon from '../components/TabBarIcon';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
-
 import Colors from '../constants/Colors';
 
 //Screens
-import AudioPlayer from '../screens/AudioPlayer';
+// import AudioPlayer from '../screens/AudioPlayer';
 import AudioPlayerRebuild from '../screens/AudioPlayerRebuild';
 import ExtraInfo from '../screens/ExtraInfo';
 import HomeScreen from '../screens/HomeScreen';

@@ -1,10 +1,8 @@
 import React from 'react';
 import { Platform, TouchableOpacity, StyleSheet, Text, View, BackHandler } from 'react-native';
 import { NavigationActions } from 'react-navigation'
-
 import PictureView from './PictureView';
 import PropTypes from 'prop-types';
-// import content from '../assets/content';
 
 export default class ObjectView extends React.Component {
   static navigationOptions = {

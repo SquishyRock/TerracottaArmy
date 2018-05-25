@@ -6,14 +6,11 @@ import {
   Platform,
   TouchableOpacity
 } from 'react-native';
-
 import SearchBar from './SearchBar';
 import ObjectList from './ObjectList';
-import { contentEn, contentIl } from '../assets/englishContent';
-
-import { WebBrowser } from 'expo';
 import { MonoText } from '../components/StyledText';
 import { translate } from 'react-i18next';
+import { contentEn, contentIl } from '../assets/content';
 
 @translate(['panelSearch', 'panels'], { wait: true })
 export default class PanelSearch extends React.Component {

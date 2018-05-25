@@ -11,7 +11,6 @@ import {
   Icon,
   Picker
 } from 'react-native';
-import { WebBrowser } from 'expo';
 import { translate } from 'react-i18next';
 import { MonoText } from '../components/StyledText';
 

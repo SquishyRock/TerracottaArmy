@@ -1,6 +1,5 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, AppRegistry, FlatList } from 'react-native';
-
 import AudioItem from './AudioItem';
 import PropTypes from 'prop-types'
 
@@ -10,12 +9,11 @@ export default class AudioList extends React.Component {
   static propTypes = {
     objects : PropTypes.array.isRequired,
     findId: PropTypes.func.isRequired,
+    songIndex: PropTypes.number.isRequired,
   }
   _keyExtractor = (item, index) => item.id;
-  //Filter the full list into a filtered list for the FlatList to use as a data set
- 
+
   render() {
-    // Will render the whole list to start and will cut it down based on what user inputs into text field
     return (
       <View style={styles.main}>
         <FlatList

@@ -11,11 +11,10 @@ import {
 	TouchableOpacity
 } from 'react-native';
 import Slider from 'react-native-slider';
-import FullAudioPlayer from './FullAudioPlayer';
 import SearchBar from './SearchBar';
 import AudioList from './AudioList';
 import { Asset, Audio, Font, DangerZone } from 'expo';
-import { audioContentEn, audioContentIl } from '../assets/englishContent';
+import { audioContentEn, audioContentIl } from '../assets/content';
 import { translate } from 'react-i18next';
 
 const BACKGROUND_COLOR = '#FFFFFF';
@@ -52,7 +51,9 @@ export default class AudioPlayerRebuild extends React.Component {
 	}
 
 	componentWillMount() {
-		if (this.props.i18n.language == 'il') {
+		const locale = this.props.i18n.language
+    const localeStr = locale.substring(0, 2);
+		if (localeStr == 'il') {
 			this.setState({
 				content: audioContentIl
 			})
@@ -66,13 +67,12 @@ export default class AudioPlayerRebuild extends React.Component {
 
 	componentWillReceiveProps(nextProps) {
 		this.getLocale()
-		// console.log('Receive Props')
-		// console.log(this.props.i18n.language)
-		// console.log(this.state.content)
 	}
 
 	getLocale = () => {
-		if (this.props.i18n.language == 'il') {
+		const locale = this.props.i18n.language
+    const localeStr = locale.substring(0, 2);
+		if (localeStr == 'il') {
 			this.setState({
 				content: audioContentIl
 			})
@@ -99,7 +99,6 @@ export default class AudioPlayerRebuild extends React.Component {
 
 	componentWillUnmount() {
 		this.playbackInstance.unloadAsync()
-		console.log('unmount')
 	}
 
 	async _loadNewPlaybackInstance(playing) {
@@ -297,7 +296,7 @@ export default class AudioPlayerRebuild extends React.Component {
 						<View style={styles.search}>
 							<SearchBar handleTextInput={this.handleTextInput} />
 						</View>
-						<AudioList objects={_filteredList} findId={this.props.findId} songIndex={this.index} />
+						<AudioList objects={_filteredList} findId={this.findId} songIndex={this.index} />
 					</View>
 					{/* <FullAudioPlayer objectList={this.state.content} findId={this.findId} songIndex={this.index} getLocale={this.getLocale} /> */}
 				</View>

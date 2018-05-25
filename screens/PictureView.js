@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'rea
 import { StackActions, NavigationActions } from 'react-navigation'
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
-import { contentEn, contentIl } from '../assets/englishContent';
+import { contentEn, contentIl } from '../assets/content';
 
 @translate(['pictureView', 'panels'], { wait: true })
 export default class PictureView extends React.Component {
@@ -27,16 +27,16 @@ export default class PictureView extends React.Component {
   getLocale = () => {
     const locale = this.props.i18n.language
     const localeStr = locale.substring(0, 2);
-    let map = []
     if (localeStr == 'il') {
-      map = contentIl
+      this.setState({
+        content: contentIl
+      })
     }
     else {
-      map = contentEn
+      this.setState({
+        content: contentEn
+      })
     }
-    this.setState({
-      content: map
-    })
   }
 
   findId(id) {
@@ -64,8 +64,6 @@ export default class PictureView extends React.Component {
   render() {
     const { params } = this.props.navigation.state;
     return (
-
-
       <View style={{ flex: 1, }}>
         <View style={{ backgroundColor: '#e2ddc5', }}>
 
@@ -84,16 +82,13 @@ export default class PictureView extends React.Component {
                 width: '70%',
                 height: 30,
                 marginLeft: 10,
-
                 flex: 1,
               }}
               onPress={() => this.props.navigation.goBack()}>
               <Image
                 style={{
-
                   width: '50%',
                   height: '100%',
-
                 }}
                 resizeMode="contain"
                 source={require("../assets/images/arrow-left.png")}
@@ -107,11 +102,9 @@ export default class PictureView extends React.Component {
         </View>
         <View style={{
           // flex: 1,
-
           flexDirection: 'row',
           justifyContent: 'center',
           alignItems: 'center',
-
           marginBottom: 0,
           top: '-7%',
         }}>
@@ -129,10 +122,8 @@ export default class PictureView extends React.Component {
           {this.props.object.id.charAt(0) === 'o' ? <Image style={styles.image} source={this.props.object.media} /> : <Text> </Text>}
           <View style={styles.links}>
           </View>
-
         </ScrollView>
       </View>
-
     );
   }
 }
@@ -142,10 +133,8 @@ const styles = StyleSheet.create({
     flex: 1
   },
   image: {
-
     flex: 1,
     width: null,
-
     height: 220,
     resizeMode: 'contain'
   },
@@ -159,7 +148,6 @@ const styles = StyleSheet.create({
   //   flex: 1,
   //   flexDirection: 'row'
   // },
-
   // facebookButton: {
   //   marginTop: 0,
   //   backgroundColor:'white',
@@ -167,29 +155,21 @@ const styles = StyleSheet.create({
   //   width: 200,
   //   flex: 1,
   //   marginBottom: 20,
-
   //  },
   objectName: {
     fontSize: 33,
-
-
   },
   objectNameContainer: {
     width: '80%',
     marginLeft: '5%',
     marginTop: '4%',
     marginBottom: '12%',
-
   },
   container: {
     marginTop: 0,
     paddingLeft: 20,
     paddingRight: 20,
     marginBottom: 0
-
-
-
-
   },
   navRight: {
     backgroundColor: '#3e3f3f',
@@ -204,7 +184,6 @@ const styles = StyleSheet.create({
     height: 50,
     borderBottomLeftRadius: 30,
     borderTopLeftRadius: 30,
-
   },
   rightText: {
     color: 'white',
@@ -216,22 +195,16 @@ const styles = StyleSheet.create({
     textAlign: 'right',
     marginRight: 15,
     marginTop: 15,
-
   },
   containerText: {
     fontSize: 19,
     marginBottom: '5%',
   },
   objectNumber: {
-
     flex: 2,
     textAlign: 'right',
-
     fontSize: 17,
     letterSpacing: 1,
     marginRight: 10,
-
   }
-
-
 });

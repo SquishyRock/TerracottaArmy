@@ -1,6 +1,5 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View, TextInput, FlatList } from 'react-native';
-
 import ObjectItem from './ObjectItem';
 import PropTypes from 'prop-types'
 

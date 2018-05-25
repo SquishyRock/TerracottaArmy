@@ -38,14 +38,8 @@ export default class SearchBar extends React.Component {
 
 const styles = StyleSheet.create({
   searchBar: {
-
     fontSize: 20,
     padding: 10,
-
-
-
   },
 });
 
-
-AppRegistry.registerComponent('SearchBar', () => SearchBar);

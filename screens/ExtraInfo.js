@@ -1,7 +1,6 @@
 import React from 'react';
 import { Platform, StyleSheet, Text, View, Button, Linking, Dimensions, Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native';
 import { MapView } from 'expo';
-import DirectionsCallout from './DirectionsCallout'
 import { translate } from 'react-i18next';
 
 const { width, height } = Dimensions.get('window');

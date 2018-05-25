@@ -13,6 +13,7 @@ export default class AudioItem extends React.Component {
   static propTypes = {
     object : PropTypes.object.isRequired,
     findId: PropTypes.func.isRequired,
+    songIndex: PropTypes.number.isRequired,
   }
   
   handlePress = () => {
