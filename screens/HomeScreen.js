@@ -56,7 +56,16 @@ export default class HomeScreen extends React.Component {
     const { t, i18n } = this.props;
     return (
       <View style={styles.container}>
-        <Text>{this.state.lang}</Text>
+        <Image
+          style={{
+            alignSelf: 'center',
+            height: '30%',
+            width: '90%'
+          }}
+          resizeMode="contain"
+          source={require("../assets/images/terracotta-title.png")}
+        />
+       <View style={styles.flags} >
         <TouchableOpacity
           style={this.state.lang === 'en' ? styles.activeFlag : styles.inactiveFlag}
           onPress={() => { this._changeLang('en') }}
@@ -71,15 +80,7 @@ export default class HomeScreen extends React.Component {
           <Text> Italian
           </Text>
         </TouchableOpacity>
-        <Image
-          style={{
-            alignSelf: 'center',
-            height: '30%',
-            width: '90%'
-          }}
-          resizeMode="contain"
-          source={require("../assets/images/terracotta-title.png")}
-        />
+        </View>
         <Image
           style={{
 
@@ -100,7 +101,7 @@ export default class HomeScreen extends React.Component {
             backgroundColor: 'white',
             padding: 10,
             position: 'absolute',
-            top: '30%',
+            top: '40%',
             marginRight: 40,
             marginLeft: 40,
             marginTop: 10,
@@ -141,7 +142,7 @@ export default class HomeScreen extends React.Component {
             padding: 10,
             position: 'absolute',
             zIndex: 4,
-            top: '42.5%',
+            top: '52.5%',
             marginRight: 40,
             marginLeft: 40,
             marginTop: 10,
@@ -185,7 +186,7 @@ export default class HomeScreen extends React.Component {
             padding: 10,
             position: 'absolute',
             zIndex: 4,
-            top: '55%',
+            top: '65%',
             marginRight: 40,
             marginLeft: 40,
             marginTop: 10,
@@ -242,10 +243,20 @@ const styles = StyleSheet.create({
     marginTop: Platform.OS === 'ios' ? '5%' : 10,
   },
   activeFlag: {
-    height: 30,
+
+
+    padding: 3,
+    backgroundColor: 'white',
+    
   },
   inactiveFlag: {
-    height: 30,
-    backgroundColor: 'white'
+    padding: 3,
+ 
+ 
   },
+  flags: {
+            flexDirection: 'row',
+            alignItems: 'center',
+          
+  }
 });
