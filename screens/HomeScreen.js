@@ -95,7 +95,7 @@ export default class HomeScreen extends React.Component {
           resizeMode="contain"
           source={require("../assets/images/homeScreen-artwork.png")}
         />
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('AudioStack')}
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Audio')}
           style={{
             alignSelf: 'center',
             backgroundColor: 'white',
@@ -135,7 +135,7 @@ export default class HomeScreen extends React.Component {
 
             }}>{t('home:audioButton')}</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('PanelStack')}
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Panel')}
           style={{
             alignSelf: 'center',
             backgroundColor: 'white',
@@ -179,7 +179,7 @@ export default class HomeScreen extends React.Component {
 
             }}>{t('home:panelsButton')}</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => this.props.navigation.navigate('InfoStack')}
+        <TouchableOpacity onPress={() => this.props.navigation.navigate('Info')}
           style={{
             alignSelf: 'center',
             backgroundColor: 'white',
