@@ -7,7 +7,10 @@ export default class HomeIcon extends React.Component {
       <Image
         source={require('../images/home.png')}
         fadeDuration={0}
-        style={{width: 20, height: 20}}
+        style={{
+          width: 20, 
+          height: 20,
+        }}
       />
     );
   }
