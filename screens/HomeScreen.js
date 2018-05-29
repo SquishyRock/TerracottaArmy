@@ -59,28 +59,51 @@ export default class HomeScreen extends React.Component {
         <Image
           style={{
             alignSelf: 'center',
-            height: '30%',
+            height: '25%',
             width: '90%'
           }}
           resizeMode="contain"
           source={require("../assets/images/terracotta-title.png")}
         />
+
+      
        <View style={styles.flags} >
+       
         <TouchableOpacity
           style={this.state.lang === 'en' ? styles.activeFlag : styles.inactiveFlag}
           onPress={() => { this._changeLang('en') }}
         >
-          <Text>English
+          <Text style={styles.flagText}>ENGLISH
           </Text>
+          <Image
+          style={{
+            height: '20%',
+            width: '100%',
+
+          }}
+          resizeMode="contain"
+          source={require("../assets/images/english.png")}
+        />
         </TouchableOpacity>
         <TouchableOpacity
           style={this.state.lang === 'il' ? styles.activeFlag : styles.inactiveFlag}
           onPress={() => { this._changeLang('il') }}
         >
-          <Text>Italian
+          <Text style={styles.flagText}>ITALIAN
           </Text>
+          <Image
+          style={{
+            height: '20%',
+            width: '100%',
+
+          }}
+          resizeMode="contain"
+          source={require("../assets/images/italian.png")}
+        />
         </TouchableOpacity>
         </View>
+        
+
         <Image
           style={{
 
@@ -244,19 +267,29 @@ const styles = StyleSheet.create({
   },
   activeFlag: {
 
-
-    padding: 5,
+ 
+    padding: 10,
     backgroundColor: 'white',
-    
+    paddingTop: 8,
   },
   inactiveFlag: {
-    padding: 5,
- 
+    padding: 10,
+    paddingTop: 8,
  
   },
+  flagText:{
+    fontSize: 12,
+  },
   flags: {
-            flexDirection: 'row',
-            alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    top: -45,
           
-  }
+  },
+  language: {
+    textAlign: 'center',
+    letterSpacing: .3,
+    marginBottom: 2,
+  },
 });
