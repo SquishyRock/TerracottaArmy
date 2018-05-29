@@ -70,14 +70,14 @@ export default class HomeScreen extends React.Component {
           style={this.state.lang === 'en' ? styles.activeFlag : styles.inactiveFlag}
           onPress={() => { this._changeLang('en') }}
         >
-          <Text> English
+          <Text>English
           </Text>
         </TouchableOpacity>
         <TouchableOpacity
           style={this.state.lang === 'il' ? styles.activeFlag : styles.inactiveFlag}
           onPress={() => { this._changeLang('il') }}
         >
-          <Text> Italian
+          <Text>Italian
           </Text>
         </TouchableOpacity>
         </View>
@@ -245,12 +245,12 @@ const styles = StyleSheet.create({
   activeFlag: {
 
 
-    padding: 3,
+    padding: 5,
     backgroundColor: 'white',
     
   },
   inactiveFlag: {
-    padding: 3,
+    padding: 5,
  
  
   },
