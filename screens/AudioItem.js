@@ -43,8 +43,10 @@ export default class AudioItem extends React.Component {
              marginLeft:"-3%",
             
             }}>
-          <Text style={styles.id}>{this.props.object.id.toUpperCase()} </Text>
-          <Text style={styles.name}>{this.props.object.name.toUpperCase()}</Text>
+          <Text  style={(this.props.listIndex == this.props.songIndex) ? styles.id : styles.id1}>
+          {this.props.object.id.toUpperCase()} </Text>
+          <Text   style={(this.props.listIndex == this.props.songIndex) ? styles.name : styles.name1}>
+         {this.props.object.name.toUpperCase()}</Text>
           </View>
           </View>
         </View>
@@ -57,7 +59,7 @@ const styles = StyleSheet.create({
   deal: {
   },
   info: {
-    backgroundColor: 'red',
+    backgroundColor: 'black',
     borderColor: 'black',
     borderWidth: .5,
     flex: 1,
@@ -80,6 +82,13 @@ const styles = StyleSheet.create({
     fontSize: 30,
     marginBottom: 4,
     flex: 5, 
+    color: 'white',
+  },
+  id1: {
+    fontSize: 30,
+    marginBottom: 4,
+    flex: 5, 
+   
   },
   footer: {
     flexDirection: 'row',
@@ -87,6 +96,12 @@ const styles = StyleSheet.create({
   name: {
     flex: 1,
     paddingBottom: 2,
+    color: 'white',
+  },
+  name1: {
+    flex: 1,
+    paddingBottom: 2,
+  
   },
   price: {
     flex: 1,

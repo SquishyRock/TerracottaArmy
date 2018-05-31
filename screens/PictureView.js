@@ -203,7 +203,7 @@ const styles = StyleSheet.create({
   objectNumber: {
     flex: 2,
     textAlign: 'right',
-    fontSize: 17,
+    fontSize: 22,
     letterSpacing: 1,
     marginRight: 10,
   }
