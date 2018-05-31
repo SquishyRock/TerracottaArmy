@@ -68,17 +68,15 @@ export default class HomeScreen extends React.Component {
 
       
        <View style={styles.flags} >
-       
         <TouchableOpacity
           style={this.state.lang === 'en' ? styles.activeFlag : styles.inactiveFlag}
           onPress={() => { this._changeLang('en') }}
         >
-          <Text style={styles.flagText}>ENGLISH
-          </Text>
+       
           <Image
           style={{
             height: '20%',
-            width: '100%',
+            width: 40,
 
           }}
           resizeMode="contain"
@@ -89,12 +87,11 @@ export default class HomeScreen extends React.Component {
           style={this.state.lang === 'il' ? styles.activeFlag : styles.inactiveFlag}
           onPress={() => { this._changeLang('il') }}
         >
-          <Text style={styles.flagText}>ITALIAN
-          </Text>
+        
           <Image
           style={{
             height: '20%',
-            width: '100%',
+            width: 40,
 
           }}
           resizeMode="contain"
@@ -124,7 +121,7 @@ export default class HomeScreen extends React.Component {
             backgroundColor: 'white',
             padding: 10,
             position: 'absolute',
-            top: '40%',
+            top: '38%',
             marginRight: 40,
             marginLeft: 40,
             marginTop: 10,
@@ -142,8 +139,8 @@ export default class HomeScreen extends React.Component {
           }}>
           <Image
             style={{
-              width: '100%',
-              height: '100%',
+              width: 20,
+              height: 20,
               flex: 1,
               paddingRight: '5%',
 
@@ -165,7 +162,7 @@ export default class HomeScreen extends React.Component {
             padding: 10,
             position: 'absolute',
             zIndex: 4,
-            top: '52.5%',
+            top: '50.5%',
             marginRight: 40,
             marginLeft: 40,
             marginTop: 10,
@@ -185,8 +182,8 @@ export default class HomeScreen extends React.Component {
           }}>
           <Image
             style={{
-              width: '100%',
-              height: '100%',
+              width: 20,
+              height: 20,
               flex: 1,
               paddingRight: '5%',
 
@@ -209,7 +206,7 @@ export default class HomeScreen extends React.Component {
             padding: 10,
             position: 'absolute',
             zIndex: 4,
-            top: '65%',
+            top: '63%',
             marginRight: 40,
             marginLeft: 40,
             marginTop: 10,
@@ -230,8 +227,8 @@ export default class HomeScreen extends React.Component {
           }}>
           <Image
             style={{
-              width: '100%',
-              height: '100%',
+              width: 20,
+              height: 20,
               flex: 1,
               paddingRight: '5%',
 
@@ -270,21 +267,18 @@ const styles = StyleSheet.create({
  
     padding: 10,
     backgroundColor: 'white',
-    paddingTop: 8,
+  
   },
   inactiveFlag: {
     padding: 10,
-    paddingTop: 8,
  
-  },
-  flagText:{
-    fontSize: 12,
+ 
   },
   flags: {
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    top: -45,
+    top: -50,
           
   },
   language: {
