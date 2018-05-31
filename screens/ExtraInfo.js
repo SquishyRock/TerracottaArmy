@@ -46,7 +46,7 @@ export default class ExtraInfo extends React.Component {
         <View style={styles.titleSpacing}>
 
           <Text style={styles.title}>{t('info:title1')}</Text>
-          <Text style={styles.title}>{t('info:title2')}</Text>
+          <Text style={styles.titleItalian}>{t('info:title2')}</Text>
           {/* <Text style={styles.title}>INFO</Text> */}
 
 
@@ -64,6 +64,7 @@ export default class ExtraInfo extends React.Component {
               width: '90%',
                height: Platform.OS === 'ios' ? 200 : 225,
                  flex: 1,
+                 zIndex: -100,
 
 
 
@@ -164,6 +165,14 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     margin: 0,
     padding: 0,
+    
+  },
+  titleItalian: {
+    fontSize: 30,
+    letterSpacing: 2,
+    margin: 0,
+    padding: 0,
+ 
   },
   customView: {
     width: 140,
