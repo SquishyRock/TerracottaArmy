@@ -63,7 +63,9 @@ export default class HomeScreen extends React.Component {
             width: '90%'
           }}
           resizeMode="contain"
-          source={require("../assets/images/terracotta-title.png")}
+          source={this.state.lang === 'en' ? require("../assets/images/terracotta-title.png") : require("../assets/images/EsercitoTerracottaVett.png")}
+    
+          
         />
 
       
