@@ -52,19 +52,13 @@ i18n
           facebook: 'Visit us on Facebook',
           file: require("../assets/images/terracotta-title.png"),
         },
-        tabs: {
-          home: 'Home',
-          audio: 'Audio',
-          panels: 'Panels',
-          info: 'Info',
-        },
       },
       il: {
         home: {
           audioButton: 'AUDIOGUIDE',
           panelsButton: 'PANNELLI DESCRITTIVI',
           infoButton: 'INFORMAZIONI SULLA MOSTRA',
-          file: require("../assets/images/terracotta-title.png"),
+          file: require("../assets/images/terracotta-title-il.png"),
         },
         audio: {
           title: 'AUDIOGUIDA',
@@ -87,13 +81,7 @@ i18n
           location: 'DOVE CI TROVIAMO',
           direction: 'INDICAZIONI',
           facebook: 'VIENI A TROVARCI SU FACEBOOK',
-          file: require("../assets/images/terracotta-title.png"),
-        },
-        tabs: {
-          home: 'Home IL',
-          audio: 'Audio IL',
-          panels: 'Panels IL',
-          info: 'Info IL',
+          file: require("../assets/images/terracotta-title-il.png"),
         },
       },
       // have a initial namespace
