@@ -269,10 +269,11 @@ const styles = StyleSheet.create({
  
     padding: 10,
     backgroundColor: 'white',
-  
+    
   },
   inactiveFlag: {
     padding: 10,
+   
  
  
   },
