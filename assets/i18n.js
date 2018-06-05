@@ -2,9 +2,6 @@ import i18n from 'i18next';
 import { DangerZone } from 'expo';
 const { Localization } = DangerZone;
 
-// creating a language detection plugin using expo
-// http://i18next.com/docs/ownplugin/#languagedetector
-
 const languageDetector = {
   type: 'languageDetector',
   async: true, // async detection
@@ -43,7 +40,7 @@ i18n
         },
         info: {
           title1: 'EXHIBIT',
-          title2: 'INFO',
+          title2: 'INFORMATION',
           website: 'VISIT THE WEBSITE',
           info1: 'The Terracotta Army and The First Emperor of China; The Exhibition is an extraordinary voyage in Ancient China of 2,200 years ago. It is the most complete exhibition ever created on the Terracotta Army, the necropolis and life of the First Emperor. In an incredible staging, this exhibition brings together more than 300 life size reproductions of statues, chariots, weapons and objects from the daily life of the Emperor Qin Shi Huangdi, such as they were discovered in the pits.',
           info2: 'This immersion in the heart of the necropolis is intended for a broad audience. Over more than 1,800 m², the exhibition addresses numerous topics such as the history of the First Emperor, his army and military conquests, his empire and the creation process of the Terracotta Army soldiers.',
