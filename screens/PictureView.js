@@ -136,7 +136,8 @@ const styles = StyleSheet.create({
     flex: 1,
     width: null,
     height: 220,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
+    marginBottom: 15,
   },
   // title: {
   //   fontSize: 16,
