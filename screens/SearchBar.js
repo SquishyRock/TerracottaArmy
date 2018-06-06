@@ -40,6 +40,7 @@ const styles = StyleSheet.create({
   searchBar: {
     fontSize: 20,
     padding: 10,
+   
   },
 });
 

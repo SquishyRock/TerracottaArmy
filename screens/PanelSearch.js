@@ -92,10 +92,9 @@ export default class PanelSearch extends React.Component {
     const { t, i18n } = this.props;
     return (
       <View style={styles.main}>
-        <View style={styles.titleSpacing}>
+       
           <Text style={styles.title}>{t('panels:title')}</Text>
-          {/* <Text style={styles.title}>PANELS</Text> */}
-        </View>
+      
         <View style={styles.search}>
           <SearchBar handleTextInput={this.handleTextInput} />
         </View>
@@ -108,14 +107,15 @@ export default class PanelSearch extends React.Component {
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    paddingTop: 10,
+     
+    
     backgroundColor: '#e2ddc5',
     margin: 10,
     marginBottom: 0,
     marginTop: Platform.OS === 'ios' ? '5%' : 10,
   },
   body: {
-    flex: 1,
+    
     backgroundColor: '#e2ddc5',
     margin: 10,
   },
@@ -125,18 +125,19 @@ const styles = StyleSheet.create({
     letterSpacing: 2,
     margin: 0,
     padding: 0,
-  },
-  titleSpacing: {
     margin: '5%',
+    paddingTop: 10,
+   
   },
+ 
   search: {
     backgroundColor: 'white',
-    marginLeft: '5%',
-    marginRight: '5%',
-    marginBottom: '3%',
-    borderBottomColor: '#47315a',
-    borderBottomWidth: 2,
-
+		marginLeft: '5%',
+		marginRight: '5%',
+	
+		borderBottomColor: '#47315a',
+		borderBottomWidth: 2,
+    marginBottom: 10,
   },
 
 

@@ -288,17 +288,16 @@ export default class AudioPlayerRebuild extends React.Component {
 		const { t, i18n } = this.props;
 		return (
 			<View style={styles.container}>
-				<View style={styles.list}>
+			
 					<View style={styles.main}>
-						<View style={styles.titleSpacing}>
+						
 							<Text style={styles.title}>{t('audio:title')}</Text>
-						</View>
+						
 						<View style={styles.search}>
 							<SearchBar handleTextInput={this.handleTextInput} />
 						</View>
 						<AudioList objects={_filteredList} findId={this.findId} songIndex={this.index} />
-					</View>
-					{/* <FullAudioPlayer objectList={this.state.content} findId={this.findId} songIndex={this.index} getLocale={this.getLocale} /> */}
+				
 				</View>
 				<View style={styles.bottom}>
 					<View
@@ -423,7 +422,7 @@ const styles = StyleSheet.create({
 		flexDirection: 'column',
 		justifyContent: 'space-between',
 		alignSelf: 'stretch',
-		backgroundColor: BACKGROUND_COLOR,
+		backgroundColor: '#FFFFFF',
 
 	},
 	playbackContainer: {
@@ -460,11 +459,7 @@ const styles = StyleSheet.create({
 		marginBottom: 5,
 		width: '100%',
 	},
-	list: {
-		flex: 1,
-		flexGrow: 3.8,
-		// paddingTop: 10,
-	},
+
 	list2: {
 		flex: 1,
 	},
@@ -480,7 +475,8 @@ const styles = StyleSheet.create({
 		backgroundColor: 'white'
 	},
 	main: {
-		flex: 1,
+		flex: 3.8,
+		// flexGrow: 3.8,
 		paddingTop: 10,
 		backgroundColor: '#e2ddc5',
 		margin: 10,
@@ -493,17 +489,17 @@ const styles = StyleSheet.create({
 		letterSpacing: 2,
 		margin: 0,
 		padding: 0,
-	},
-	titleSpacing: {
 		margin: '5%',
-	},
+	   
+	  },
 	search: {
 		backgroundColor: 'white',
 		marginLeft: '5%',
 		marginRight: '5%',
-		marginBottom: '3%',
+		
 		borderBottomColor: '#47315a',
 		borderBottomWidth: 2,
+		marginBottom: 5,
 
 	},
 });

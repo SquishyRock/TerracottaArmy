@@ -264,6 +264,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#e2ddc5',
     margin: 10,
     marginTop: Platform.OS === 'ios' ? '5%' : 10,
+    
   },
 
   inactiveFlag: {
