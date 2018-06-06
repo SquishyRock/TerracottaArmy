@@ -69,9 +69,9 @@ export default class PictureView extends React.Component {
 
           <View
             style={{
-              flex: 1,
+           
               marginBottom: '15%',
-              marginTop: 20,
+              marginTop: 10,
               flexDirection: 'row',
               alignItems: 'center',
               justifyContent: 'flex-start'
@@ -107,6 +107,7 @@ export default class PictureView extends React.Component {
           alignItems: 'center',
           marginBottom: 0,
           top: '-7%',
+         
         }}>
           <TouchableOpacity style={styles.navLeft} onPress={() => this._advanceIndex(false, params.singleItem.id)}>
             <Text style={styles.leftText}> Previous </Text>
@@ -158,13 +159,17 @@ const styles = StyleSheet.create({
   //   marginBottom: 20,
   //  },
   objectName: {
+   
     fontSize: 33,
   },
   objectNameContainer: {
-    width: '80%',
+  width: '90%',
     marginLeft: '5%',
-    marginTop: '4%',
-    marginBottom: '12%',
+marginBottom: 28,
+    
+   
+   
+
   },
   container: {
     marginTop: 0,
@@ -202,10 +207,11 @@ const styles = StyleSheet.create({
     marginBottom: '5%',
   },
   objectNumber: {
-    flex: 2,
+    flex: 1,
     textAlign: 'right',
     fontSize: 22,
     letterSpacing: 1,
-    marginRight: 10,
+    marginRight: '10%',
+    zIndex: 400,
   }
 });
