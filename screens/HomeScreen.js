@@ -71,6 +71,7 @@ export default class HomeScreen extends React.Component {
       
        <View style={styles.flags} >
         <TouchableOpacity
+      
           style={this.state.lang === 'en' ? styles.activeFlag : styles.inactiveFlag}
           onPress={() => { this._changeLang('en') }}
         >
@@ -264,18 +265,17 @@ const styles = StyleSheet.create({
     margin: 10,
     marginTop: Platform.OS === 'ios' ? '5%' : 10,
   },
-  activeFlag: {
 
- 
-    padding: 10,
-    backgroundColor: 'white',
-    
-  },
   inactiveFlag: {
     padding: 10,
-   
+  
+  },
+  activeFlag: {
+    padding: 10,
+    backgroundColor: 'white',
  
- 
+  
+  
   },
   flags: {
     flexDirection: 'row',

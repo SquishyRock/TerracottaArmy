@@ -52,19 +52,10 @@ export default class ExtraInfo extends React.Component {
 
           <Image
             style={{
-          
-              // width: Platform.OS === 'ios' ? '80%' : '100%',
-                
-             
-              top: Platform.OS === 'ios' ? '-10%' : '-15%',
-              right: Platform.OS === 'ios' ? '-35%' : '-25%',
-              // zIndex: -100,
-              // marginBottom: 0,
-              // paddingBottom:0,
+              alignSelf: 'center',
               width: '90%',
-               height: Platform.OS === 'ios' ? 200 : 225,
-                 flex: 1,
-                 zIndex: -100,
+               height: Platform.OS === 'ios' ? 120 : 145, 
+               marginBottom: 12,
 
 
 
@@ -78,7 +69,8 @@ export default class ExtraInfo extends React.Component {
               flex: 1,
               alignItems: 'center',
               justifyContent: 'center',
-              top:  '-10%',
+              marginBottom: 20,
+          
             }}>
           
               <Text style={styles.website}>{t('info:website')}</Text>
@@ -87,11 +79,11 @@ export default class ExtraInfo extends React.Component {
           <Image
             style={{
               alignSelf: 'center',
-              height: '20%',
+              height: '25%',
               width: '70%',
-              marginTop: '10%',
-              marginBottom: '2%',
-              top:  '-15%',
+              marginBottom: 0,
+          
+         
             }}
             resizeMode="contain"
             source={t('info:file')} 
@@ -109,7 +101,7 @@ export default class ExtraInfo extends React.Component {
         }} >
           <Text style={styles.location}>{t('info:location')}</Text>
           <Image
-            style={{ width: '90%', height: Platform.OS === 'ios' ? 250 : 275,  flex: 1, top: '-15%' }}
+            style={{ width: '90%', height: Platform.OS === 'ios' ? 250 : 275,  flex: 1, }}
             resizeMode="contain"
             source={require("../assets/images/map.png")}
           />
@@ -123,7 +115,7 @@ export default class ExtraInfo extends React.Component {
           style={{
             flex: 1, alignItems: 'center',
             justifyContent: 'center',
-            top: '-3%',
+           
           }}>
           <TouchableOpacity
             onPress={this.openFacebook} style={styles.facebookButton}>
@@ -170,7 +162,7 @@ const styles = StyleSheet.create({
   titleItalian: {
     fontSize: 30,
     letterSpacing: 2,
-    margin: 0,
+    marginBottom: 20,
     padding: 0,
  
   },
@@ -180,9 +172,6 @@ const styles = StyleSheet.create({
   },
   paragraphSpace: {
     marginBottom: 10,
-  },
-  aboutText: {
-    top: "-17%",
   },
   website: {
     
@@ -198,7 +187,7 @@ const styles = StyleSheet.create({
     fontSize: 15,
     letterSpacing: 2,
     marginBottom: 4,
-    top: '-15%'
+    marginTop: 16,
 
   },
   directions: {
@@ -208,7 +197,7 @@ const styles = StyleSheet.create({
     width: '90%',
     flex: 1,
     marginBottom: 20,
-    top: '-15%',
+  
     
 
   },
