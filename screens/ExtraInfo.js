@@ -50,41 +50,17 @@ export default class ExtraInfo extends React.Component {
           {/* <Text style={styles.title}>INFO</Text> */}
 
 
-          <Image
-            style={{
-              alignSelf: 'center',
-              width: '90%',
-               height: Platform.OS === 'ios' ? 120 : 145, 
-               marginBottom: 12,
-
-
-
-            }}
+          <Image style={styles.faceImage}
             resizeMode="contain"
             source={require("../assets/images/face.png")}
           />
                <TouchableOpacity
             onPress={this.openWebpage}
-            style={{
-              flex: 1,
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: 20,
-          
-            }}>
-          
+            style={styles.websiteButton}>
               <Text style={styles.website}>{t('info:website')}</Text>
-             
           </TouchableOpacity>
-          <Image
-            style={{
-              alignSelf: 'center',
-              height: '25%',
-              width: '70%',
-              marginBottom: 0,
-          
-         
-            }}
+
+          <Image style={styles.titleImage}
             resizeMode="contain"
             source={t('info:file')} 
           />
@@ -95,13 +71,9 @@ export default class ExtraInfo extends React.Component {
             <Text>{t('info:info2')}</Text>
           </View>
         </View>
-        <View style={{
-          flex: 1, alignItems: 'center',
-          justifyContent: 'center', marginTop: 120
-        }} >
+        <View style={styles.mapContainer} >
           <Text style={styles.location}>{t('info:location')}</Text>
-          <Image
-            style={{ width: '90%', height: Platform.OS === 'ios' ? 250 : 275,  flex: 1, }}
+          <Image style={styles.mapImage}
             resizeMode="contain"
             source={require("../assets/images/map.png")}
           />
@@ -111,12 +83,7 @@ export default class ExtraInfo extends React.Component {
             </Text>
           </TouchableOpacity >
         </View>
-        <View
-          style={{
-            flex: 1, alignItems: 'center',
-            justifyContent: 'center',
-           
-          }}>
+        <View style={styles.facebookContainer}>
           <TouchableOpacity
             onPress={this.openFacebook} style={styles.facebookButton}>
             <Text style={styles.facebookButtonText}>{t('info:facebook')}</Text>
@@ -226,5 +193,42 @@ const styles = StyleSheet.create({
     textAlign: 'center',
 
   },
+  faceImage: {
+    alignSelf: 'center',
+    width: '90%',
+     height: Platform.OS === 'ios' ? 120 : 145, 
+     marginBottom: 12,
+  },
+  websiteButton: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 20,
+  },
+  titleImage:{
+    alignSelf: 'center',
+    height: '25%',
+    width: '70%',
+    marginBottom: 0,
+  },
+  mapContainer:{
+      flex: 1,
+       alignItems: 'center',
+      justifyContent: 'center',
+       marginTop: 120
+  },
+  mapImage:{
+    width: '90%',
+     height: Platform.OS === 'ios' ? 250 : 275, 
+     flex: 1,
+  },
+  facebookContainer:{
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+
+
 
 });

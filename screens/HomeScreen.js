@@ -56,32 +56,18 @@ export default class HomeScreen extends React.Component {
     const { t, i18n } = this.props;
     return (
       <View style={styles.container}>
-        <Image
-          style={{
-            alignSelf: 'center',
-            height: '25%',
-            width: '90%'
-          }}
+        <Image style={styles.titleImage}
           resizeMode="contain"
           source={t('home:file')}
-    
-          
         />
 
-      
        <View style={styles.flags} >
         <TouchableOpacity
-      
           style={this.state.lang === 'en' ? styles.activeFlag : styles.inactiveFlag}
           onPress={() => { this._changeLang('en') }}
         >
        
-          <Image
-          style={{
-            height: '20%',
-            width: 40,
-
-          }}
+          <Image style={styles.englishFlag}
           resizeMode="contain"
           source={require("../assets/images/english.png")}
         />
@@ -91,12 +77,7 @@ export default class HomeScreen extends React.Component {
           onPress={() => { this._changeLang('il') }}
         >
         
-          <Image
-          style={{
-            height: '20%',
-            width: 40,
-
-          }}
+          <Image style={styles.italianFlag}
           resizeMode="contain"
           source={require("../assets/images/italian.png")}
         />
@@ -104,148 +85,37 @@ export default class HomeScreen extends React.Component {
         </View>
         
 
-        <Image
-          style={{
-
-            height: '50%',
-            width: '100%',
-            position: 'absolute',
-            bottom: 0,
-            left: '-12%',
-            zIndex: -100,
-
-          }}
+        <Image style={styles.homeScreenArtwork}
           resizeMode="contain"
-          source={require("../assets/images/homeScreen-artwork.png")}
-        />
+          source={require("../assets/images/homeScreen-artwork.png")} />
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Audio')}
-          style={{
-            alignSelf: 'center',
-            backgroundColor: 'white',
-            padding: 10,
-            position: 'absolute',
-            top: '38%',
-            marginRight: 40,
-            marginLeft: 40,
-            marginTop: 10,
-            paddingTop: 20,
-            paddingBottom: 20,
-            borderRadius: 10,
-            borderWidth: 1,
-            overflow: 'hidden',
-            borderColor: 'white',
-            width: Platform.OS === 'ios' ? '68%' : '60%',
-            flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'flex-start'
-          }}>
-          <Image
-            style={{
-              width: 20,
-              height: 20,
-              flex: 1,
-              paddingRight: '5%',
-
-            }}
+          style={styles.audioButton}>
+          <Image style={styles.audioImage}
             resizeMode="contain"
             source={require("../assets/images/headphones.png")}
           />
-          <Text
-            style={{
-              flex: 3,
-              fontSize: 15,
-
-            }}>{t('home:audioButton')}</Text>
+          <Text style={styles.audioText}>{t('home:audioButton')}</Text>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Panel')}
-          style={{
-            alignSelf: 'center',
-            backgroundColor: 'white',
-            padding: 10,
-            position: 'absolute',
-            zIndex: 4,
-            top: '50.5%',
-            marginRight: 40,
-            marginLeft: 40,
-            marginTop: 10,
-            paddingTop: 20,
-            paddingBottom: 20,
-
-            borderRadius: 10,
-            borderWidth: 1,
-            overflow: 'hidden',
-            borderColor: 'white',
-            width: Platform.OS === 'ios' ? '68%' : '60%',
-            flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'space-around'
-
-          }}>
+        style={styles.panelButton}>
           <Image
-            style={{
-              width: 20,
-              height: 20,
-              flex: 1,
-              paddingRight: '5%',
-
-            }}
+           style={styles.panelImage}
             resizeMode="contain"
             source={require("../assets/images/search-panel.png")}
           />
           <Text
-            style={{
-              flex: 3,
-              fontSize: 13,
-              alignItems: 'center',
-
-            }}>{t('home:panelsButton')}</Text>
+          style={styles.panelText}>{t('home:panelsButton')}</Text>
         </TouchableOpacity>
+
         <TouchableOpacity onPress={() => this.props.navigation.navigate('Info')}
-          style={{
-            alignSelf: 'center',
-            backgroundColor: 'white',
-            padding: 10,
-            position: 'absolute',
-            zIndex: 4,
-            top: '63%',
-            marginRight: 40,
-            marginLeft: 40,
-            marginTop: 10,
-            paddingTop: 20,
-            paddingBottom: 20,
-
-            borderRadius: 10,
-            borderWidth: 1,
-            overflow: 'hidden',
-            borderColor: 'white',
-            width: Platform.OS === 'ios' ? '68%' : '60%',
-            flex: 1,
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'flex-start'
-
-
-          }}>
+        style={styles.infoButton}>
           <Image
-            style={{
-              width: 20,
-              height: 20,
-              flex: 1,
-              paddingRight: '5%',
-
-            }}
+          style={styles.infoImage}
             resizeMode="contain"
             source={require("../assets/images/info-icon.png")}
           />
           <Text
-            style={{
-              flex: 3,
-              fontSize: 13,
-
-
-            }}>{t('home:infoButton')}</Text>
+           style={styles.infoText}>{t('home:infoButton')}</Text>
         </TouchableOpacity>
 
 
@@ -290,4 +160,124 @@ const styles = StyleSheet.create({
     letterSpacing: .3,
     marginBottom: 2,
   },
+  titleImage:{
+    alignSelf: 'center',
+    height: '25%',
+    width: '90%'
+  },
+  englishFlag:{
+    height: '20%',
+    width: 40,
+  },
+  italianFlag:{
+    height: '20%',
+    width: 40,
+  },
+  homeScreenArtwork:{
+    height: '50%',
+    width: '100%',
+    position: 'absolute',
+    bottom: 0,
+    left: '-12%',
+    zIndex: -100,
+  },
+  audioButton:{
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    padding: 10,
+    position: 'absolute',
+    top: '38%',
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: 'hidden',
+    borderColor: 'white',
+    width: Platform.OS === 'ios' ? '68%' : '60%',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
+  audioImage:{
+    width: 20,
+    height: 20,
+    flex: 1,
+    paddingRight: '5%',
+  },
+  audioText:{
+    flex: 3,
+    fontSize: 15,
+  },
+  panelButton:{
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    padding: 10,
+    position: 'absolute',
+    zIndex: 4,
+    top: '50.5%',
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: 'hidden',
+    borderColor: 'white',
+    width: Platform.OS === 'ios' ? '68%' : '60%',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around'
+  },
+  panelImage:{
+    width: 20,
+    height: 20,
+    flex: 1,
+    paddingRight: '5%',
+  },
+  panelText:{
+    flex: 3,
+    fontSize: 13,
+    alignItems: 'center',
+  },
+  infoButton:{
+    alignSelf: 'center',
+    backgroundColor: 'white',
+    padding: 10,
+    position: 'absolute',
+    zIndex: 4,
+    top: '63%',
+    marginRight: 40,
+    marginLeft: 40,
+    marginTop: 10,
+    paddingTop: 20,
+    paddingBottom: 20,
+    borderRadius: 10,
+    borderWidth: 1,
+    overflow: 'hidden',
+    borderColor: 'white',
+    width: Platform.OS === 'ios' ? '68%' : '60%',
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
+  infoImage:{
+    width: 20,
+    height: 20,
+    flex: 1,
+    paddingRight: '5%',
+  },
+  infoText:{
+    flex: 3,
+    fontSize: 13,
+  }
+
+
+
 });

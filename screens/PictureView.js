@@ -64,32 +64,15 @@ export default class PictureView extends React.Component {
   render() {
     const { params } = this.props.navigation.state;
     return (
-      <View style={{ flex: 1, }}>
-        <View style={{ backgroundColor: '#e2ddc5', }}>
+      <View style={styles.mainContainer}>
+        <View style={styles.backgroundColor}>
 
-          <View
-            style={{
-           
-              marginBottom: '15%',
-              marginTop: 10,
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'flex-start'
-            }}>
+          <View style={styles.headerContainer}>
             <TouchableOpacity
-              style={{
-                zIndex: 400,
-                width: '70%',
-                height: 30,
-                marginLeft: 10,
-                flex: 1,
-              }}
+            style={styles.backButton}
               onPress={() => this.props.navigation.goBack()}>
               <Image
-                style={{
-                  width: '50%',
-                  height: '100%',
-                }}
+              style={styles.backButtonImage}
                 resizeMode="contain"
                 source={require("../assets/images/arrow-left.png")}
               />
@@ -100,15 +83,8 @@ export default class PictureView extends React.Component {
             <Text style={styles.objectName}>{this.props.object.name}</Text>
           </View>
         </View>
-        <View style={{
-          // flex: 1,
-          flexDirection: 'row',
-          justifyContent: 'center',
-          alignItems: 'center',
-          marginBottom: 0,
-          top: '-7%',
-         
-        }}>
+        <View 
+        style={styles.navContainer}>
           <TouchableOpacity style={styles.navLeft} onPress={() => this._advanceIndex(false, params.singleItem.id)}>
             <Text style={styles.leftText}> Previous </Text>
           </TouchableOpacity>
@@ -130,7 +106,7 @@ export default class PictureView extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  container: {
+  mainContainer: {
     flex: 1
   },
   image: {
@@ -140,36 +116,14 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     marginBottom: 15,
   },
-  // title: {
-  //   fontSize: 16,
-  //   padding: 10,
-  //   fontWeight: 'bold',
-  //   backgroundColor: 'rgba(237, 149, 45, 0.4)',
-  // },
-  // links: {
-  //   flex: 1,
-  //   flexDirection: 'row'
-  // },
-  // facebookButton: {
-  //   marginTop: 0,
-  //   backgroundColor:'white',
-  //   padding:6,
-  //   width: 200,
-  //   flex: 1,
-  //   marginBottom: 20,
-  //  },
   objectName: {
    
     fontSize: 33,
   },
   objectNameContainer: {
-  width: '90%',
+     width: '90%',
     marginLeft: '5%',
-marginBottom: 28,
-    
-   
-   
-
+     marginBottom: 36, 
   },
   container: {
     marginTop: 0,
@@ -213,5 +167,34 @@ marginBottom: 28,
     letterSpacing: 1,
     marginRight: '10%',
     zIndex: 400,
-  }
+  },
+  backgroundColor:{
+    backgroundColor: '#e2ddc5',
+  },
+  headerContainer:{
+    marginBottom: '15%',
+    marginTop: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
+  backButton:{
+    zIndex: 400,
+    width: '70%',
+    height: 30,
+    marginLeft: 10,
+    flex: 1,
+  },
+  backButtonImage:{
+    width: '50%',
+    height: '100%',
+  },
+  navContainer:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 0,
+    top: '-7%',
+  },
+
 });

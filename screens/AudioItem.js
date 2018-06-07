@@ -26,23 +26,11 @@ export default class AudioItem extends React.Component {
       onPress={this.handlePress}>
         <View style={(this.props.listIndex == this.props.songIndex) ? styles.info : styles.info1}>
         <View style={styles.objectTitles}>
-        <Image
-              style={{
-                width: '60%',
-                height: '60%',
-                flex: 1,
-                marginTop: '4.5%',
-               
-
-              }}
+        <Image style={styles.audioPlay}
               resizeMode="contain"
               source={require("../assets/images/audio-play.png")}
             />
-            <View  style={{
-             flex: 3,
-             marginLeft:"-3%",
-            
-            }}>
+            <View style={styles.songIndex}>
           <Text  style={(this.props.listIndex == this.props.songIndex) ? styles.id : styles.id1}>
           {this.props.object.id.toUpperCase()} </Text>
           <Text   style={(this.props.listIndex == this.props.songIndex) ? styles.name : styles.name1}>
@@ -111,4 +99,14 @@ const styles = StyleSheet.create({
     overflow: 'hidden',
     flexDirection: 'row',
   },
+  audioPlay: {
+    width: '60%',
+    height: '60%',
+    flex: 1,
+    marginTop: '4.5%',
+  },
+  songIndex: {
+    flex: 3,
+   marginLeft:"-3%",
+  }
 });

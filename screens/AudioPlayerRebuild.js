@@ -317,11 +317,7 @@ export default class AudioPlayerRebuild extends React.Component {
 							disabled={this.state.isLoading}
 						>
 							<View>
-								<Image
-									style={{
-										width: 20,
-										height: 20,
-									}}
+								<Image style={styles.previous}
 									resizeMode="contain"
 									source={require("../assets/images/previous.png")}
 								/>
@@ -333,30 +329,15 @@ export default class AudioPlayerRebuild extends React.Component {
 							onPress={this._onPlayPausePressed}
 							disabled={this.state.isLoading}
 						>
-							<View
-								style={{
-									marginLeft: 15,
-									marginRight: 15,
-
-								}} >
+							<View style={styles.playHolder} >
 								{this.state.isPlaying ? (
-									<Image
-										style={{
-
-											width: Platform.OS === 'ios' ? 40 : 35,
-											height: Platform.OS === 'ios' ? 40 : 35,
-
-										}}
+									<Image style={styles.pauseButton}
 										resizeMode="contain"
 										source={require("../assets/images/pause.png")}
 									/>
 								) : (
 										<Image
-											style={{
-
-												width: Platform.OS === 'ios' ? 40 : 35,
-												height: Platform.OS === 'ios' ? 40 : 35,
-											}}
+										style={styles.playButton}
 											resizeMode="contain"
 											source={require("../assets/images/play.png")}
 										/>
@@ -370,12 +351,7 @@ export default class AudioPlayerRebuild extends React.Component {
 							disabled={this.state.isLoading}
 						>
 							<View>
-								<Image
-									style={{
-
-										width: 20,
-										height: 20,
-									}}
+								<Image style={styles.next}
 									resizeMode="contain"
 									source={require("../assets/images/next.png")}
 								/>
@@ -502,4 +478,26 @@ const styles = StyleSheet.create({
 		marginBottom: 5,
 
 	},
+	previous: {
+		width: 20,
+		height: 20,
+	},
+	playHolder:{
+		marginLeft: 15,
+		marginRight: 15,
+	},
+	pauseButton:{
+		width: Platform.OS === 'ios' ? 40 : 35,
+		height: Platform.OS === 'ios' ? 40 : 35,
+	},
+	playButton: {
+		width: Platform.OS === 'ios' ? 40 : 35,
+        height: Platform.OS === 'ios' ? 40 : 35,
+	},
+	next:{
+		width: 20,
+	    height: 20,
+	}
+
+
 });
