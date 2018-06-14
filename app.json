@@ -25,10 +25,10 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.squishyrock.terracottaarmy"
+      "bundleIdentifier": "com.squishyrock.terracottaarmyofchina"
     },
     "android": {
-      "package": "com.squishyrock.terracottaarmy"
+      "package": "com.squishyrock.terracottaarmyofchina"
     }
   }
 }
