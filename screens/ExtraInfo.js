@@ -1,29 +1,18 @@
 import React from 'react';
-import { Platform, StyleSheet, Text, View, Button, Linking, Dimensions, Image, ScrollView, TouchableHighlight, TouchableOpacity } from 'react-native';
-import { MapView } from 'expo';
+import { Platform, StyleSheet, Text, View, Linking, Image, ScrollView, TouchableOpacity } from 'react-native';
 import { translate } from 'react-i18next';
-
-const { width, height } = Dimensions.get('window');
-
-const ASPECT_RATIO = width / height;
-const LATITUDE = 51.231598;
-const LONGITUDE = 2.912937;
-const LATITUDE_DELTA = 0.0922;
-const LONGITUDE_DELTA = LATITUDE_DELTA * ASPECT_RATIO;
-const SPACE = 0.01;
-
-const mapTitle = <TouchableOpacity onPress={this.openMaps}>
-  <Text>
-    Directions
-  </Text>
-</TouchableOpacity >;
-
 
 @translate(['extraInfo', 'info'], { wait: true })
 export default class ExtraInfo extends React.Component {
   static navigationOptions = {
     header: null,
   };
+  constructor(props) {
+    super(props);
+    this.openWebpage = this.openWebpage.bind(this);
+    this.openFacebook = this.openFacebook.bind(this);
+    this.openMaps = this.openMaps.bind(this);
+  }
   openWebpage = () => {
     Linking.openURL('https://www.esercitoditerracotta.it/') // Italian Website
     // Linking.openURL('http://www.expo-terracotta.be/exhibition/') // Website basic 

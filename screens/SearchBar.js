@@ -14,6 +14,7 @@ export default class SearchBar extends React.Component {
     this.state = {
       text: "",
     }
+    this.handleChange = this.handleChange.bind(this);
   }
 
   handleChange = (searchTerm) => {

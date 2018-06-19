@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   View,
-  Image,
   Text,
   StyleSheet,
   TouchableOpacity,
@@ -23,8 +22,6 @@ export default class ObjectItem extends React.Component {
     })
   } 
   render() {
-    const { navigate } = this.props.navigation;
-
     return (
       <TouchableOpacity 
       onPress={this.handlePress}>

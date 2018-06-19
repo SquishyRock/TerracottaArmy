@@ -18,6 +18,9 @@ export default class PictureView extends React.Component {
     this.state = {
       content: contentEn
     }
+    this.getLocale = this.getLocale.bind(this);
+    this.findId = this.findId.bind(this);
+    this._advanceIndex = this._advanceIndex.bind(this);
   }
 
 
@@ -66,7 +69,6 @@ export default class PictureView extends React.Component {
     return (
       <View style={styles.mainContainer}>
         <View style={styles.backgroundColor}>
-
           <View style={styles.headerContainer}>
             <TouchableOpacity
             style={styles.backButton}

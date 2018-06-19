@@ -1,27 +1,22 @@
 import React from 'react';
 import {
-	Dimensions,
 	Image,
 	StyleSheet,
 	Text,
 	TouchableHighlight,
 	View,
 	Platform,
-	Button,
-	TouchableOpacity
 } from 'react-native';
 import Slider from 'react-native-slider';
 import SearchBar from './SearchBar';
 import AudioList from './AudioList';
-import { Asset, Audio, Font, DangerZone } from 'expo';
+import { Audio} from 'expo';
 import { audioContentEn, audioContentIl } from '../assets/content';
 import { translate } from 'react-i18next';
 
 const BACKGROUND_COLOR = '#FFFFFF';
 const DISABLED_OPACITY = 0.5;
 const FONT_SIZE = 14;
-const RATE_SCALE = 3.0;
-
 
 @translate(['audioPlayerRebuild', 'audio'], { wait: true })
 export default class AudioPlayerRebuild extends React.Component {
@@ -48,11 +43,17 @@ export default class AudioPlayerRebuild extends React.Component {
 			searchTerm: '',
 		};
 		this.getLocale = this.getLocale.bind(this);
+		this._advanceIndex = this._advanceIndex.bind(this);
+		this.findId = this.findId.bind(this);
+		this._onBackPressed = this._onBackPressed.bind(this);
+		this._onForwardPressed = this._onForwardPressed.bind(this);
+		this._changeLang = this._changeLang.bind(this);
+		this.handleTextInput = this.handleTextInput.bind(this);
 	}
 
 	componentWillMount() {
 		const locale = this.props.i18n.language
-    const localeStr = locale.substring(0, 2);
+		const localeStr = locale.substring(0, 2);
 		if (localeStr == 'il') {
 			this.setState({
 				content: audioContentIl
@@ -71,7 +72,7 @@ export default class AudioPlayerRebuild extends React.Component {
 
 	getLocale = () => {
 		const locale = this.props.i18n.language
-    const localeStr = locale.substring(0, 2);
+		const localeStr = locale.substring(0, 2);
 		if (localeStr == 'il') {
 			this.setState({
 				content: audioContentIl
@@ -288,16 +289,12 @@ export default class AudioPlayerRebuild extends React.Component {
 		const { t, i18n } = this.props;
 		return (
 			<View style={styles.container}>
-			
-					<View style={styles.main}>
-						
-							<Text style={styles.title}>{t('audio:title')}</Text>
-						
-						<View style={styles.search}>
-							<SearchBar handleTextInput={this.handleTextInput} />
-						</View>
-						<AudioList objects={_filteredList} findId={this.findId} songIndex={this.index} />
-				
+				<View style={styles.main}>
+					<Text style={styles.title}>{t('audio:title')}</Text>
+					<View style={styles.search}>
+						<SearchBar handleTextInput={this.handleTextInput} />
+					</View>
+					<AudioList objects={_filteredList} findId={this.findId} songIndex={this.index} />
 				</View>
 				<View style={styles.bottom}>
 					<View
@@ -337,7 +334,7 @@ export default class AudioPlayerRebuild extends React.Component {
 									/>
 								) : (
 										<Image
-										style={styles.playButton}
+											style={styles.playButton}
 											resizeMode="contain"
 											source={require("../assets/images/play.png")}
 										/>
@@ -399,7 +396,6 @@ const styles = StyleSheet.create({
 		justifyContent: 'space-between',
 		alignSelf: 'stretch',
 		backgroundColor: '#FFFFFF',
-
 	},
 	playbackContainer: {
 		flex: 1,
@@ -413,7 +409,6 @@ const styles = StyleSheet.create({
 		marginLeft: 40,
 		marginRight: 40,
 		marginTop: -10,
-
 	},
 	text: {
 		fontSize: FONT_SIZE,
@@ -425,23 +420,19 @@ const styles = StyleSheet.create({
 		fontSize: 12,
 	},
 	buttonsContainerBase: {
-
 		flex: 1,
 		flexDirection: 'row',
 		justifyContent: 'center',
 		alignItems: 'center',
-
 		marginTop: 5,
 		marginBottom: 5,
 		width: '100%',
 	},
-
 	list2: {
 		flex: 1,
 	},
 	bottom: {
 		flex: 1,
-
 	},
 	activeFlag: {
 		height: 30,
@@ -458,7 +449,6 @@ const styles = StyleSheet.create({
 		margin: 10,
 		marginBottom: 0,
 		marginTop: Platform.OS === 'ios' ? '5%' : 10,
-
 	},
 	title: {
 		fontSize: 30,
@@ -466,38 +456,33 @@ const styles = StyleSheet.create({
 		margin: 0,
 		padding: 0,
 		margin: '5%',
-	   
-	  },
+	},
 	search: {
 		backgroundColor: 'white',
 		marginLeft: '5%',
 		marginRight: '5%',
-		
 		borderBottomColor: '#47315a',
 		borderBottomWidth: 2,
 		marginBottom: 5,
-
 	},
 	previous: {
 		width: 20,
 		height: 20,
 	},
-	playHolder:{
+	playHolder: {
 		marginLeft: 15,
 		marginRight: 15,
 	},
-	pauseButton:{
+	pauseButton: {
 		width: Platform.OS === 'ios' ? 40 : 35,
 		height: Platform.OS === 'ios' ? 40 : 35,
 	},
 	playButton: {
 		width: Platform.OS === 'ios' ? 40 : 35,
-        height: Platform.OS === 'ios' ? 40 : 35,
+		height: Platform.OS === 'ios' ? 40 : 35,
 	},
-	next:{
+	next: {
 		width: 20,
-	    height: 20,
+		height: 20,
 	}
-
-
 });

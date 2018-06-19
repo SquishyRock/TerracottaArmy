@@ -2,17 +2,12 @@ import React from 'react';
 import {
   Image,
   Platform,
-  ScrollView,
   StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Button,
-  Icon,
-  Picker
 } from 'react-native';
 import { translate } from 'react-i18next';
-import { MonoText } from '../components/StyledText';
 
 // Enable fallbacks if you want `en-US` and `en-GB` to fallback to `en`
 @translate(['homeScreen', 'home'], { wait: true })
