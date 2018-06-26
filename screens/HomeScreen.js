@@ -6,6 +6,7 @@ import {
   Text,
   TouchableOpacity,
   View,
+  StatusBar,
 } from 'react-native';
 import { translate } from 'react-i18next';
 
@@ -51,6 +52,7 @@ export default class HomeScreen extends React.Component {
     const { t, i18n } = this.props;
     return (
       <View style={styles.container}>
+      <StatusBar barStyle="dark-content"/>
         <Image style={styles.titleImage}
           resizeMode="contain"
           source={t('home:file')}
