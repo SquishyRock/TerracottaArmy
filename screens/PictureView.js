@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
   },
   headerContainer:{
     marginTop: Platform.OS === 'ios' ? 5 : 11,
-    marginBottom: Platform.OS === 'ios' ? '6%' : '6%',
+    marginBottom: Platform.OS === 'ios' ? '4%' : '6%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start'
