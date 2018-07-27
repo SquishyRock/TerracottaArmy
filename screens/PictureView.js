@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, Image, ScrollView, TouchableOpacity, Platform } from 'react-native';
 import { StackActions, NavigationActions } from 'react-navigation'
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
@@ -119,8 +119,10 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   objectName: {
-   
-    fontSize: 33,
+    fontSize: Platform.OS === 'ios' ? 25 : 30,
+  
+    fontWeight: 'bold',
+    letterSpacing: 1,
   },
   objectNameContainer: {
      width: '90%',
@@ -174,8 +176,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#e2ddc5',
   },
   headerContainer:{
-    marginBottom: '15%',
-    marginTop: 10,
+    marginTop: Platform.OS === 'ios' ? 5 : 11,
+    marginBottom: Platform.OS === 'ios' ? '6%' : '6%',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'flex-start'
