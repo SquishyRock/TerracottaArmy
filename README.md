@@ -8,4 +8,4 @@ Multi-lingual audio guide mobile application built using React Native and deploy
 ## Packages Used
 - React Native / Slider
 - i18next / react-i18next
-- Exponent
+- Exponent / Audio
