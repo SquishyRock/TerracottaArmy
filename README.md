@@ -9,3 +9,10 @@ Multi-lingual audio guide mobile application built using React Native and deploy
 - React Native / Slider
 - i18next / react-i18next
 - Exponent / Audio
+
+## Steps to Run
+Run from APP store:
+  https://play.google.com/store/apps/details?id=com.squishyrock.terracottaarmyofchina
+Run from Apple Store:
+  name: The Terracotta Army of China
+  id#: 1402771005
